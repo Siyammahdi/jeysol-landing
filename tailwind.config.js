@@ -10,6 +10,7 @@ module.exports = {
       animation: {
         'pulse-slow': 'pulse 6s cubic-bezier(0.4, 0, 0.6, 1) infinite',
         'shine': 'shine 2s linear infinite',
+        'float': 'float 6s ease-in-out infinite',
       },
       keyframes: {
         pulse: {
@@ -24,12 +25,18 @@ module.exports = {
             'background-position': '-200% 0',
           },
         },
+        float: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-10px)' },
+        },
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+        'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
       zIndex: {
         '1': '1',
+        '5': '5',
       },
     },
   },
