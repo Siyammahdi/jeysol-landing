@@ -175,7 +175,7 @@ const HeroSection: React.FC = () => {
                 </button>
               </Link>
 
-              <Link href="#work" className="group">
+              <Link href="/works" className="group">
                 <button className="px-8 py-4 text-blue-100 border border-blue-500/30 rounded-lg relative overflow-hidden transition-all duration-500 bg-[#0A0F2C] hover:bg-blue-900/10">
                   <span className="relative z-10">Our Work</span>
                   <span className="absolute inset-0 bg-gradient-to-r from-blue-500/0 via-blue-500/10 to-blue-500/0 opacity-0 group-hover:opacity-100 group-hover:animate-shine"></span>

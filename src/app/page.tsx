@@ -6,6 +6,7 @@ import AboutSection from '@/components/sections/AboutSection';
 import TestimonialsSection from '@/components/sections/TestimonialsSection';
 import ContactSection from '@/components/sections/ContactSection';
 import Navbar from '@/components/ui/Navbar';
+import Footer from '@/components/ui/Footer';
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       <AboutSection />
       <TestimonialsSection />
       <ContactSection />
+      <Footer />
     </main>
   );
 }

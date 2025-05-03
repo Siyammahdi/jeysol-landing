@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 
@@ -34,32 +35,23 @@ const Navbar: React.FC = () => {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center">
-            <span className="text-xl font-bold">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-violet-400 to-teal-400">Jey</span>
-              <span className="text-white">Sol</span>
-            </span>
+            <div className="relative h-10 w-32">
+              <Image 
+                src="/jeysol-logo.webp" 
+                alt="JeySol Logo" 
+                fill
+                className="object-contain"
+                priority
+              />
+            </div>
           </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <NavLink href="#services">Services</NavLink>
-            <NavLink href="#about">About</NavLink>
-            <NavLink href="#testimonials">Testimonials</NavLink>
-            <NavLink href="#contact">Contact</NavLink>
-            <Link 
-              href="/login" 
-              className="relative px-5 py-2 overflow-hidden group"
-            >
-              <span className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-blue-500/20 to-violet-500/20 border border-blue-500/30 rounded-lg"></span>
-              <span className="relative flex items-center justify-center text-blue-300 group-hover:text-blue-100 transition-colors duration-300">
-                Login
-                <svg className="ml-1 w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
-                  <polyline points="10 17 15 12 10 7"></polyline>
-                  <line x1="15" y1="12" x2="3" y2="12"></line>
-                </svg>
-              </span>
-            </Link>
+            <NavLink href="/works">Works</NavLink>
+            <NavLink href="/careers">Careers</NavLink>
+            <NavLink href="/about">About us</NavLink>
+            <NavLink href="/contact">Contact</NavLink>
           </nav>
 
           {/* Mobile menu button */}
@@ -97,6 +89,8 @@ const Navbar: React.FC = () => {
           <div className="container mx-auto px-4 py-4 flex flex-col space-y-4">
             <MobileNavLink href="#services" onClick={() => setIsMobileMenuOpen(false)}>Services</MobileNavLink>
             <MobileNavLink href="#about" onClick={() => setIsMobileMenuOpen(false)}>About</MobileNavLink>
+            <MobileNavLink href="/works" onClick={() => setIsMobileMenuOpen(false)}>Works</MobileNavLink>
+            <MobileNavLink href="/careers" onClick={() => setIsMobileMenuOpen(false)}>Careers</MobileNavLink>
             <MobileNavLink href="#testimonials" onClick={() => setIsMobileMenuOpen(false)}>Testimonials</MobileNavLink>
             <MobileNavLink href="#contact" onClick={() => setIsMobileMenuOpen(false)}>Contact</MobileNavLink>
             <Link 
