@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useState, useRef } from 'react';
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import React, { useState, useRef, useCallback, memo } from 'react';
+import { motion, useMotionValue, useSpring } from 'framer-motion';
 
 interface ServiceCardProps {
   icon: React.ReactNode;
@@ -13,7 +13,7 @@ interface ServiceCardProps {
   setHovered: (isHovered: boolean) => void;
 }
 
-const ServiceCard: React.FC<ServiceCardProps> = ({ 
+const ServiceCard: React.FC<ServiceCardProps> = memo(({ 
   icon, 
   title, 
   description, 
@@ -26,8 +26,8 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
-  // Subtle card tilt effect on mouse move
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+  // Subtle card tilt effect on mouse move - with useCallback for better performance
+  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     if (!cardRef.current) return;
     const rect = cardRef.current.getBoundingClientRect();
     
@@ -38,21 +38,26 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
     // Convert to -15 to 15 range for subtle rotation
     mouseX.set((x - 0.5) * 20);
     mouseY.set((y - 0.5) * -20);
-  };
+  }, [mouseX, mouseY]);
 
   // Reset mouse position when not hovering
-  const handleMouseLeave = () => {
+  const handleMouseLeave = useCallback(() => {
     mouseX.set(0);
     mouseY.set(0);
     setHovered(false);
-  };
+  }, [mouseX, mouseY, setHovered]);
+  
+  // Handle mouse enter with useCallback
+  const handleMouseEnter = useCallback(() => {
+    setHovered(true);
+  }, [setHovered]);
   
   // Smooth spring config for mouse movement
   const springConfig = { damping: 25, stiffness: 150 };
   const rotateX = useSpring(mouseY, springConfig);
   const rotateY = useSpring(mouseX, springConfig);
   
-  // Card movement on scroll
+  // Card movement on scroll - simplified
   const cardVariants = {
     hidden: { opacity: 0, y: 50 },
     visible: { 
@@ -67,21 +72,19 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
     }
   };
   
-  // Icon animations
+  // Icon animations - simplified
   const iconVariants = {
     initial: { 
       scale: 1,
-      y: 0
     },
     hover: { 
       scale: 1.15,
       y: -8,
-      filter: "drop-shadow(0 10px 8px rgb(59 130 246 / 0.5))",
       transition: { duration: 0.3, type: "spring", stiffness: 400 }
     }
   };
   
-  // Text animations
+  // Text animations - simplified
   const titleVariants = {
     initial: { y: 0 },
     hover: { 
@@ -90,20 +93,17 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
     }
   };
   
+  // Description animation variants - simplified
   const descriptionVariants = {
-    hidden: { opacity: 0, height: 0, y: 10 },
+    hidden: { opacity: 0, height: 0 },
     visible: { 
       opacity: 1, 
       height: "auto",
-      y: 0,
-      transition: { 
-        duration: 0.3,
-        staggerChildren: 0.1,
-        delayChildren: 0.1
-      }
+      transition: { duration: 0.3 }
     }
   };
   
+  // Line animation variants - simplified
   const lineVariants = {
     hidden: { width: "10%", left: "45%" },
     visible: { 
@@ -118,14 +118,15 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
       ref={cardRef}
       variants={cardVariants}
       onMouseMove={handleMouseMove}
-      onMouseEnter={() => setHovered(true)}
+      onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       style={{ 
         rotateX,
         rotateY,
         transformPerspective: 1000,
         zIndex: isActive ? 40 : 30,
-        opacity: otherCardHovered ? 0.6 : 1
+        opacity: otherCardHovered ? 0.6 : 1,
+        willChange: 'transform, opacity',
       }}
       className={`
         group relative overflow-hidden rounded-xl 
@@ -158,53 +159,50 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
         `}
       />
       
-      {/* Animated background orbs */}
-      <div className="absolute inset-0 overflow-hidden -z-5 rounded-xl">
-        <div className={`
-          absolute -top-[20%] -right-[20%] w-[60%] h-[60%] rounded-full 
-          bg-gradient-radial from-blue-400/10 via-transparent to-transparent 
-          blur-xl transform transition-all duration-500
-          ${isActive ? 'opacity-100 scale-110' : 'opacity-0 scale-90'}
-        `}/>
-        <div className={`
-          absolute -bottom-[20%] -left-[20%] w-[60%] h-[60%] rounded-full 
-          bg-gradient-radial from-indigo-500/10 via-transparent to-transparent 
-          blur-xl transform transition-all duration-500
-          ${isActive ? 'opacity-100 scale-110' : 'opacity-0 scale-90'}
-        `}/>
-      </div>
-      
-      {/* Active/hover border animation */}
-      <motion.div 
-        className="absolute inset-0 rounded-xl z-10 pointer-events-none"
-        initial="hidden"
-        animate={isActive ? "visible" : "hidden"}
-      >
-        <svg width="100%" height="100%" className="absolute inset-0">
-          <linearGradient id={`line-gradient-${index}`} x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#3B82F6" stopOpacity="1" />
-            <stop offset="50%" stopColor="#8B5CF6" stopOpacity="1" />
-            <stop offset="100%" stopColor="#14B8A6" stopOpacity="1" />
-          </linearGradient>
-          <motion.rect 
-            x="0" 
-            y="0" 
-            width="100%" 
-            height="100%" 
-            fill="none" 
-            stroke={`url(#line-gradient-${index})`} 
-            strokeWidth="1.5"
-            strokeDasharray="10,5"
-            rx="12"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={{ 
-              pathLength: isActive ? 1 : 0, 
-              opacity: isActive ? 1 : 0 
-            }}
-            transition={{ duration: 1.5, ease: "easeInOut" }}
+      {/* Animated background orbs - simplified */}
+      {isActive && (
+        <div className="absolute inset-0 overflow-hidden -z-5 rounded-xl">
+          <div className="absolute -top-[20%] -right-[20%] w-[60%] h-[60%] rounded-full 
+            bg-gradient-radial from-blue-400/10 via-transparent to-transparent 
+            blur-xl opacity-100 scale-110"
           />
-        </svg>
-      </motion.div>
+          <div className="absolute -bottom-[20%] -left-[20%] w-[60%] h-[60%] rounded-full 
+            bg-gradient-radial from-indigo-500/10 via-transparent to-transparent 
+            blur-xl opacity-100 scale-110"
+          />
+        </div>
+      )}
+      
+      {/* Active/hover border animation - simplified */}
+      {isActive && (
+        <motion.div 
+          className="absolute inset-0 rounded-xl z-10 pointer-events-none"
+          initial="hidden"
+          animate="visible"
+        >
+          <svg width="100%" height="100%" className="absolute inset-0">
+            <linearGradient id={`line-gradient-${index}`} x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#3B82F6" stopOpacity="1" />
+              <stop offset="50%" stopColor="#8B5CF6" stopOpacity="1" />
+              <stop offset="100%" stopColor="#14B8A6" stopOpacity="1" />
+            </linearGradient>
+            <motion.rect 
+              x="0" 
+              y="0" 
+              width="100%" 
+              height="100%" 
+              fill="none" 
+              stroke={`url(#line-gradient-${index})`} 
+              strokeWidth="1.5"
+              strokeDasharray="10,5"
+              rx="12"
+              initial={{ pathLength: 0, opacity: 0 }}
+              animate={{ pathLength: 1, opacity: 1 }}
+              transition={{ duration: 1.5, ease: "easeInOut" }}
+            />
+          </svg>
+        </motion.div>
+      )}
       
       {/* Card content */}
       <div className="relative z-20 p-6 md:p-8 h-full flex flex-col">
@@ -214,6 +212,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
           initial="initial"
           animate={isActive ? "hover" : "initial"}
           className="mb-5 text-blue-400 self-start"
+          style={{ willChange: isActive ? 'transform' : 'auto' }}
         >
           <div className="w-12 h-12 flex items-center justify-center">
             {icon}
@@ -226,6 +225,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
           initial="initial"
           animate={isActive ? "hover" : "initial"}
           className="text-xl font-medium text-white mb-3"
+          style={{ willChange: isActive ? 'transform' : 'auto' }}
         >
           {title}
         </motion.h3>
@@ -236,9 +236,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
           initial="hidden"
           animate={isActive ? "visible" : "hidden"}
           className="h-0.5 bg-gradient-to-r from-blue-500 via-violet-500 to-teal-500 mb-4 rounded-full relative"
-          style={{
-            filter: "drop-shadow(0 0 4px rgba(59, 130, 246, 0.5))"
-          }}
+          style={{ willChange: isActive ? 'width, left' : 'auto' }}
         />
         
         {/* Expanded content on hover */}
@@ -247,15 +245,9 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
           initial="hidden"
           animate={isActive ? "visible" : "hidden"}
           className="text-blue-100/80 text-sm overflow-hidden"
+          style={{ willChange: isActive ? 'opacity, height' : 'auto' }}
         >
-          <motion.p 
-            variants={{
-              hidden: { opacity: 0, y: 10 },
-              visible: { opacity: 1, y: 0 }
-            }}
-          >
-            {description}
-          </motion.p>
+          <p>{description}</p>
         </motion.div>
         
         {/* Learn more button */}
@@ -267,6 +259,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
             transition: { delay: 0.2 }
           }}
           className="mt-auto pt-4 flex justify-end"
+          style={{ willChange: isActive ? 'opacity, transform' : 'auto' }}
         >
           <div className="text-blue-300 text-sm font-medium flex items-center cursor-pointer group/btn">
             <span>Learn more</span>
@@ -289,15 +282,20 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
         </motion.div>
       </div>
       
-      {/* Shimmering highlight */}
-      <motion.div 
-        className="absolute inset-0 bg-gradient-to-tr from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-        style={{
-          clipPath: "polygon(0 0, 100% 0, 100% 20%, 0 50%)"
-        }}
-      />
+      {/* Shimmering highlight - conditionally rendered only when needed */}
+      {isActive && (
+        <motion.div 
+          className="absolute inset-0 bg-gradient-to-tr from-white/5 to-transparent opacity-100 transition-opacity duration-500 pointer-events-none"
+          style={{
+            clipPath: "polygon(0 0, 100% 0, 100% 20%, 0 50%)"
+          }}
+        />
+      )}
     </motion.div>
   );
-};
+});
+
+// Add display name for debugging
+ServiceCard.displayName = "ServiceCard";
 
 export default ServiceCard; 

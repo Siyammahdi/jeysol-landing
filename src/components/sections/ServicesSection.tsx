@@ -1,36 +1,52 @@
 'use client';
 
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect, useCallback, useMemo } from 'react';
 import { motion, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion';
-import ServiceCard from '../ui/ServiceCard';
+import ServiceCard from '@/components/ui/ServiceCard';
 import { serviceData } from '@/data/services';
 
-// Generate a starfield with random positions
-const generateStars = (count: number) => {
-  return Array.from({ length: count }).map((_, i) => ({
-    id: i,
-    size: Math.random() * 2 + 0.5,
-    x: Math.random() * 100,
-    y: Math.random() * 100,
-    opacity: Math.random() * 0.7 + 0.3,
-    duration: Math.random() * 10 + 20,
-    delay: Math.random() * 5,
-  }));
-};
+interface Star {
+  id: number;
+  size: number;
+  x: number;
+  y: number;
+  opacity: number;
+  duration: number;
+  delay: number;
+}
 
 const ServicesSection: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
-  const [stars, setStars] = useState<Array<any>>([]);
+  const [stars, setStars] = useState<Star[]>([]);
   const [hoveredCardIndex, setHoveredCardIndex] = useState<number | null>(null);
+  const lastMouseMoveRef = useRef<number>(0);
   
+  // Move star generation to useEffect for client-side only
   useEffect(() => {
-    setStars(generateStars(100));
+    // Reduce the number of stars for better performance (50 instead of 100)
+    const generatedStars = Array.from({ length: 50 }).map((_, i) => ({
+      id: i,
+      size: Math.random() * 2 + 0.5,
+      x: Math.random() * 100,
+      y: Math.random() * 100,
+      opacity: Math.random() * 0.7 + 0.3,
+      duration: Math.random() * 10 + 20,
+      delay: Math.random() * 5,
+    }));
+    setStars(generatedStars);
   }, []);
   
-  // Handle mouse move for interactive parallax effect
-  const handleMouseMove = (e: React.MouseEvent) => {
+  // Handle mouse move for interactive parallax effect with manual throttling (every 16ms ~ 60fps)
+  const handleMouseMove = useCallback((e: React.MouseEvent) => {
+    const now = Date.now();
+    // Throttle to 60fps (16ms)
+    if (now - lastMouseMoveRef.current < 16) {
+      return;
+    }
+    
+    lastMouseMoveRef.current = now;
     const { clientX, clientY } = e;
     const rect = sectionRef.current?.getBoundingClientRect();
     
@@ -41,14 +57,15 @@ const ServicesSection: React.FC = () => {
       mouseX.set(x / rect.width - 0.5);  // Normalize to -0.5 to 0.5
       mouseY.set(y / rect.height - 0.5); // Normalize to -0.5 to 0.5
     }
-  };
+  }, [mouseX, mouseY]);
   
-  // Smooth spring effects for mouse movement
-  const springConfig = { damping: 25, stiffness: 200 };
+  // Smooth spring effects for mouse movement - reduce stiffness for smoother animation
+  const springConfig = { damping: 30, stiffness: 150 };
   const smoothMouseX = useSpring(mouseX, springConfig);
-  const smoothMouseY = useSpring(mouseY, springConfig);
+  // We'll still use smoothMouseY for potential future interactions
+  const smoothMouseY = useSpring(mouseY, springConfig); 
   
-  // Scroll-based parallax
+  // Scroll-based parallax - optimize by using once: true where possible
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start end", "end start"]
@@ -69,14 +86,29 @@ const ServicesSection: React.FC = () => {
   const titleY = useTransform(scrollYProgress, [0, 0.2], ['50px', '0px']);
   const titleOpacity = useTransform(scrollYProgress, [0, 0.2], [0, 1]);
   
+  // Memoize the card animation variants to prevent recreation on every render
+  const cardAnimationVariants = useMemo(() => ({
+    visible: {
+      transition: {
+        staggerChildren: 0.1,
+      }
+    },
+    hidden: {}
+  }), []);
+
+  // Callback for updating hovered card index
+  const setHovered = useCallback((index: number | null) => {
+    setHoveredCardIndex(index);
+  }, []);
+  
   return (
     <motion.section
       id="services"
       ref={sectionRef}
       onMouseMove={handleMouseMove}
-      className="relative py-32 lg:py-48 overflow-hidden bg-[#0A0F2C]"
+      className="relative py-32 lg:py-48 overflow-hidden bg-[#0A0F2C] tech-grid-bg"
     >
-      {/* Deep background layer - Starfield */}
+      {/* Deep background layer - Starfield - Optimize by rendering fewer stars */}
       <div className="absolute inset-0 z-0">
         <motion.div
           style={{ y: bgY }}
@@ -92,6 +124,7 @@ const ServicesSection: React.FC = () => {
                 left: `${star.x}%`,
                 top: `${star.y}%`,
                 opacity: star.opacity,
+                willChange: 'opacity, transform',
               }}
               animate={{
                 opacity: [star.opacity, star.opacity * 0.3, star.opacity],
@@ -101,6 +134,7 @@ const ServicesSection: React.FC = () => {
                 duration: star.duration,
                 repeat: Infinity,
                 delay: star.delay,
+                ease: "linear", // Change to linear for more efficiency
               }}
             />
           ))}
@@ -109,38 +143,42 @@ const ServicesSection: React.FC = () => {
 
       {/* Mid layer - Gradient blobs and tech patterns */}
       <div className="absolute inset-0 z-[1] overflow-hidden">
-        {/* Gradient blob 1 */}
+        {/* Gradient blob 1 - Simplify animation */}
         <motion.div
           style={{ 
             y: midY, 
             rotate: rotate1,
             scale: scale1,
             x: useTransform(smoothMouseX, [-0.5, 0.5], ['-5%', '5%']),
+            translateY: useTransform(smoothMouseY, [-0.5, 0.5], ['-3%', '3%']),
+            willChange: 'transform',
           }}
           className="absolute top-[5%] right-[10%] w-[50%] h-[50%] opacity-20"
         >
           <div className="w-full h-full bg-gradient-radial from-blue-500/30 via-indigo-500/20 to-transparent rounded-full blur-3xl"></div>
         </motion.div>
         
-        {/* Gradient blob 2 */}
+        {/* Gradient blob 2 - Simplify animation */}
         <motion.div
           style={{ 
             y: midY, 
             rotate: rotate2,
             scale: scale1,
             x: useTransform(smoothMouseX, [-0.5, 0.5], ['5%', '-5%']),
+            willChange: 'transform',
           }}
           className="absolute bottom-[10%] left-[10%] w-[60%] h-[60%] opacity-20"
         >
           <div className="w-full h-full bg-gradient-radial from-violet-600/30 via-purple-500/20 to-transparent rounded-full blur-3xl"></div>
         </motion.div>
         
-        {/* Tech Circuit Pattern */}
+        {/* Tech Circuit Pattern - Optimize to be simpler */}
         <motion.div
           style={{ 
             y: useTransform(midY, v => parseFloat(String(v)) * 1.5),
             rotate: rotate3,
             opacity: useTransform(scrollYProgress, [0, 0.5], [0.05, 0.15]),
+            willChange: 'transform, opacity',
           }}
           className="absolute inset-0 z-[1]"
         >
@@ -161,34 +199,40 @@ const ServicesSection: React.FC = () => {
                 <line x1="100" y1="100" x2="700" y2="700" />
                 <line x1="700" y1="100" x2="100" y2="700" />
                 <rect x="100" y="100" width="600" height="600" rx="20" />
-                <path d="M200,250 Q400,150 600,250" />
-                <path d="M200,550 Q400,650 600,550" />
-                <path d="M250,200 Q150,400 250,600" />
-                <path d="M550,200 Q650,400 550,600" />
               </g>
             </svg>
           </div>
         </motion.div>
       </div>
 
-      {/* Foreground layer - Floating tech nodes and lines */}
+      {/* Foreground layer - Floating tech nodes and lines - Simplify SVG */}
       <div className="absolute inset-0 z-[2] overflow-hidden">
         <motion.div
           style={{ 
             y: foreY,
             x: useTransform(smoothMouseX, [-0.5, 0.5], ['2%', '-2%']),
+            willChange: 'transform',
           }}
           className="absolute inset-0"
         >
-          {/* Animated Nodes and Lines */}
+          {/* Animated Nodes and Lines - Simplified */}
           <svg width="100%" height="100%" className="opacity-10">
             <defs>
-              <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-                <feGaussianBlur stdDeviation="5" result="blur" />
-                <feComposite in="SourceGraphic" in2="blur" operator="over" />
-              </filter>
+              <linearGradient id="line-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#3B82F6" stopOpacity="0.8" />
+                <stop offset="50%" stopColor="#8B5CF6" stopOpacity="0.8" />
+                <stop offset="100%" stopColor="#14B8A6" stopOpacity="0.8" />
+              </linearGradient>
+              
+              <linearGradient id="line-gradient-v" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stopColor="#14B8A6" stopOpacity="0.8" />
+                <stop offset="50%" stopColor="#8B5CF6" stopOpacity="0.8" />
+                <stop offset="100%" stopColor="#3B82F6" stopOpacity="0.8" />
+              </linearGradient>
             </defs>
-            <g filter="url(#glow)">
+            
+            {/* Simplified nodes and lines for better performance */}
+            <g>
               {/* Horizontal line with gradient */}
               <motion.line 
                 x1="10%" 
@@ -200,21 +244,7 @@ const ServicesSection: React.FC = () => {
                 strokeDasharray="5,10" 
                 initial={{ pathLength: 0 }}
                 animate={{ pathLength: 1 }}
-                transition={{ duration: 3, ease: "easeInOut", repeat: Infinity, repeatType: "loop" }}
-              />
-              
-              {/* Vertical line with gradient */}
-              <motion.line 
-                x1="25%" 
-                y1="15%" 
-                x2="25%" 
-                y2="85%"
-                stroke="url(#line-gradient-v)"
-                strokeWidth="1"
-                strokeDasharray="5,10" 
-                initial={{ pathLength: 0 }}
-                animate={{ pathLength: 1 }}
-                transition={{ duration: 4, ease: "easeInOut", repeat: Infinity, repeatType: "loop" }}
+                transition={{ duration: 4, ease: "linear", repeat: Infinity, repeatType: "loop" }}
               />
               
               {/* Circular path with gradient */}
@@ -228,27 +258,12 @@ const ServicesSection: React.FC = () => {
                 fill="none"
                 initial={{ pathLength: 0 }}
                 animate={{ pathLength: 1 }}
-                transition={{ duration: 5, ease: "easeInOut", repeat: Infinity, repeatType: "loop" }}
+                transition={{ duration: 6, ease: "linear", repeat: Infinity, repeatType: "loop" }}
               />
               
-              {/* Connected nodes */}
-              <motion.circle cx="25%" cy="35%" r="6" fill="#3B82F6" initial={{ opacity: 0.5 }} animate={{ opacity: [0.5, 1, 0.5] }} transition={{ duration: 3, repeat: Infinity }} />
-              <motion.circle cx="75%" cy="35%" r="6" fill="#3B82F6" initial={{ opacity: 0.5 }} animate={{ opacity: [0.5, 1, 0.5] }} transition={{ duration: 2, repeat: Infinity, delay: 1 }} />
-              <motion.circle cx="25%" cy="75%" r="6" fill="#8B5CF6" initial={{ opacity: 0.5 }} animate={{ opacity: [0.5, 1, 0.5] }} transition={{ duration: 4, repeat: Infinity, delay: 0.5 }} />
-              <motion.circle cx="75%" cy="60%" r="6" fill="#14B8A6" initial={{ opacity: 0.5 }} animate={{ opacity: [0.5, 1, 0.5] }} transition={{ duration: 3.5, repeat: Infinity, delay: 1.5 }} />
-              
-              {/* Gradients */}
-              <linearGradient id="line-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#3B82F6" stopOpacity="0.8" />
-                <stop offset="50%" stopColor="#8B5CF6" stopOpacity="0.8" />
-                <stop offset="100%" stopColor="#14B8A6" stopOpacity="0.8" />
-              </linearGradient>
-              
-              <linearGradient id="line-gradient-v" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stopColor="#14B8A6" stopOpacity="0.8" />
-                <stop offset="50%" stopColor="#8B5CF6" stopOpacity="0.8" />
-                <stop offset="100%" stopColor="#3B82F6" stopOpacity="0.8" />
-              </linearGradient>
+              {/* Connected nodes - Reduced number */}
+              <motion.circle cx="25%" cy="35%" r="6" fill="#3B82F6" initial={{ opacity: 0.5 }} animate={{ opacity: [0.5, 1, 0.5] }} transition={{ duration: 3, repeat: Infinity, ease: "linear" }} />
+              <motion.circle cx="75%" cy="60%" r="6" fill="#14B8A6" initial={{ opacity: 0.5 }} animate={{ opacity: [0.5, 1, 0.5] }} transition={{ duration: 3.5, repeat: Infinity, delay: 1.5, ease: "linear" }} />
             </g>
           </svg>
         </motion.div>
@@ -262,6 +277,7 @@ const ServicesSection: React.FC = () => {
           style={{
             y: titleY,
             opacity: titleOpacity,
+            willChange: 'transform, opacity',
           }}
         >
           <motion.h2
@@ -272,7 +288,8 @@ const ServicesSection: React.FC = () => {
             </span>
           </motion.h2>
           
-          <motion.div className="w-24 h-1.5 bg-gradient-to-r from-blue-500 via-indigo-500 to-teal-500 mx-auto rounded-full mb-6"
+          <motion.div 
+            className="w-24 h-1.5 bg-gradient-to-r from-blue-500 via-indigo-500 to-teal-500 mx-auto rounded-full mb-6"
             initial={{ width: 0, opacity: 0 }}
             whileInView={{ width: 96, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -291,19 +308,12 @@ const ServicesSection: React.FC = () => {
           </motion.p>
         </motion.div>
         
-        {/* Services grid */}
+        {/* Services grid - Using memoized variants */}
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
-          variants={{
-            visible: {
-              transition: {
-                staggerChildren: 0.1,
-              }
-            },
-            hidden: {}
-          }}
+          variants={cardAnimationVariants}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10"
         >
           {serviceData.map((service, index) => (
@@ -315,8 +325,8 @@ const ServicesSection: React.FC = () => {
               index={index}
               isActive={hoveredCardIndex === index}
               otherCardHovered={hoveredCardIndex !== null && hoveredCardIndex !== index}
-              setHovered={(isHovered) => {
-                setHoveredCardIndex(isHovered ? index : null);
+              setHovered={(isHovered: boolean) => {
+                setHovered(isHovered ? index : null);
               }}
             />
           ))}

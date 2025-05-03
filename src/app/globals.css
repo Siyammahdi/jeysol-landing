@@ -120,3 +120,33 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Custom effects */
+.vignette-gradient {
+  mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+}
+
+.radial-fade {
+  mask-image: radial-gradient(circle at center, black 30%, transparent 80%);
+  -webkit-mask-image: radial-gradient(circle at center, black 30%, transparent 80%);
+}
+
+.tech-grid-bg {
+  background-image: 
+    radial-gradient(circle at 25% 25%, rgba(76, 29, 149, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(56, 189, 248, 0.15) 0%, transparent 50%),
+    linear-gradient(rgba(17, 24, 39, 0.8), rgba(17, 24, 39, 0.8)),
+    repeating-linear-gradient(to right, transparent, transparent 50px, rgba(255, 255, 255, 0.03) 50px, rgba(255, 255, 255, 0.03) 51px),
+    repeating-linear-gradient(to bottom, transparent, transparent 50px, rgba(255, 255, 255, 0.03) 50px, rgba(255, 255, 255, 0.03) 51px);
+}
+
+/* Hide scrollbar for carousel */
+.hide-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;     /* Firefox */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari and Opera */
+}

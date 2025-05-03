@@ -189,7 +189,7 @@ const AboutSection: React.FC = () => {
         >
           <div className="inline-block px-6 py-3 rounded-full bg-gradient-to-r from-blue-900/30 to-violet-900/30 backdrop-blur-sm border border-blue-500/20">
             <p className="text-lg text-blue-100/90 font-light italic">
-              "Building tomorrow's solutions, today."
+              &ldquo;Building tomorrow&rsquo;s solutions, today.&rdquo;
             </p>
           </div>
         </motion.div>
