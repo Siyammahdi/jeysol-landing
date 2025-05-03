@@ -5,6 +5,9 @@ const nextConfig = {
     // Type checking still works during development.
     ignoreBuildErrors: true,
   },
+  images: {
+    domains: ['images.unsplash.com'],
+  },
 }
 
 module.exports = nextConfig 
