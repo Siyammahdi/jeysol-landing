@@ -1,10 +1,10 @@
-import { Mail, Briefcase, HeartHandshake, LifeBuoy } from 'lucide-react';
+import { Mail, Briefcase, HeartHandshake, LifeBuoy, LucideIcon } from 'lucide-react';
 
 export interface ContactMethod {
   id: string;
   title: string;
   description: string;
-  icon: JSX.Element;
+  icon: LucideIcon;
   primaryAction: {
     label: string;
     href: string;

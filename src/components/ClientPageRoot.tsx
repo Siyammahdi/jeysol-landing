@@ -3,7 +3,6 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import { Project } from '@/data/works';
-import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import {
   ArrowLeft,
@@ -19,21 +18,15 @@ interface ClientPageRootProps {
 }
 
 const ClientPageRoot: React.FC<ClientPageRootProps> = ({ project }) => {
-  const router = useRouter();
-  
   // Refs for the sections to be animated when in view
   const heroRef = useRef<HTMLDivElement>(null);
   const overviewRef = useRef<HTMLDivElement>(null);
-  const featuresRef = useRef<HTMLDivElement>(null);
   const techStackRef = useRef<HTMLDivElement>(null);
-  const ctaRef = useRef<HTMLDivElement>(null);
 
   // Track when each section is in view
   const isHeroInView = useInView(heroRef, { once: true });
   const isOverviewInView = useInView(overviewRef, { once: true, amount: 0.3 });
-  const isFeaturesInView = useInView(featuresRef, { once: true, amount: 0.3 });
   const isTechStackInView = useInView(techStackRef, { once: true, amount: 0.3 });
-  const isCtaInView = useInView(ctaRef, { once: true, amount: 0.5 });
 
   // Scroll animation effects
   const { scrollYProgress } = useScroll();

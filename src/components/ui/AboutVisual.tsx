@@ -1,14 +1,14 @@
 'use client';
 
 import React, { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { motion, useInView, Variants } from 'framer-motion';
 
 const AboutVisual: React.FC = () => {
   const visualRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(visualRef, { once: true, amount: 0.3 });
 
   // Animation variants for the visual elements
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -19,7 +19,7 @@ const AboutVisual: React.FC = () => {
     }
   };
   
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, scale: 0.9 },
     visible: {
       opacity: 1,
@@ -32,7 +32,7 @@ const AboutVisual: React.FC = () => {
   };
   
   // Animation for the pulse effect
-  const pulseVariants = {
+  const pulseVariants: Variants = {
     initial: { scale: 0.95, opacity: 0.5 },
     animate: {
       scale: 1.05,
@@ -47,7 +47,7 @@ const AboutVisual: React.FC = () => {
   };
   
   // Animation for the floating elements
-  const floatVariants = {
+  const floatVariants: Variants = {
     initial: { y: 0 },
     animate: {
       y: [-10, 10, -10],
@@ -60,7 +60,7 @@ const AboutVisual: React.FC = () => {
   };
   
   // Animation for spinning
-  const spinVariants = {
+  const spinVariants: Variants = {
     initial: { rotate: 0 },
     animate: {
       rotate: 360,

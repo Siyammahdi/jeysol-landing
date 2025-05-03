@@ -128,7 +128,7 @@ const BehindTheScenes: React.FC = () => {
             </div>
             
             <blockquote className="text-xl md:text-2xl font-light italic text-blue-100">
-              "Our team culture is the foundation of everything we build. We believe that when talented people feel valued, supported, and inspired, they create exceptional work."
+              &quot;Our team culture is the foundation of everything we build. We believe that when talented people feel valued, supported, and inspired, they create exceptional work.&quot;
             </blockquote>
             
             <footer className="mt-6">

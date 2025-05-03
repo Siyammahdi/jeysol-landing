@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useRef, useCallback, memo } from 'react';
+import React, { useRef, useCallback, memo } from 'react';
 import { motion, useMotionValue, useSpring } from 'framer-motion';
 
 interface ServiceCardProps {

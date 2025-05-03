@@ -73,7 +73,7 @@ const CultureSection = () => {
               transition={{ duration: 0.6, delay: 0.4 }}
               className="text-blue-100/70 text-lg mb-6"
             >
-              At JeySol, we believe that great work starts with a great environment. We've built a culture that empowers our team to do their best work while maintaining a healthy work-life balance.
+              At JeySol, we believe that great work starts with a great environment. We&apos;ve built a culture that empowers our team to do their best work while maintaining a healthy work-life balance.
             </motion.p>
             
             <motion.p 

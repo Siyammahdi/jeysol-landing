@@ -2,7 +2,6 @@
 
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import Image from 'next/image';
 
 const AboutHero: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -130,7 +129,7 @@ const AboutHero: React.FC = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight tracking-tight"
           >
-            We're a team of{' '}
+            We&apos;re a team of{' '}
             <span className="relative">
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-500">
                 creators & innovators
@@ -155,7 +154,7 @@ const AboutHero: React.FC = () => {
             className="text-xl md:text-2xl text-blue-100/70 max-w-3xl mx-auto mb-10"
           >
             Passionate about building digital solutions that transform businesses
-            and enhance people's lives through thoughtful design and cutting-edge technology.
+            and enhance people&apos;s lives through thoughtful design and cutting-edge technology.
           </motion.p>
           
           {/* Key stats */}

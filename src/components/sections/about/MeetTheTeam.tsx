@@ -124,7 +124,6 @@ const TeamMemberCard: React.FC<TeamMemberCardProps> = ({
   name, 
   role, 
   motto, 
-  imageUrl, 
   socialLinks,
   index
 }) => {
@@ -191,7 +190,7 @@ const TeamMemberCard: React.FC<TeamMemberCardProps> = ({
             }}
             transition={{ duration: 0.3 }}
           >
-            <p className="text-blue-100/70 text-sm italic">"{motto}"</p>
+            <p className="text-blue-100/70 text-sm italic">&quot;{motto}&quot;</p>
           </motion.div>
           
           {/* Social links - Only visible on hover */}

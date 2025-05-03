@@ -3,10 +3,7 @@
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { values } from '@/lib/mock-team';
-import dynamic from 'next/dynamic';
-
-// Dynamically import icons
-const LucideIcons = dynamic(() => import('./IconMap'), { ssr: false });
+import { IconMap } from './IconMap';
 
 const OurValues: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -165,6 +162,9 @@ const ValueCard: React.FC<ValueCardProps> = ({ title, description, iconName, ind
     }
   };
 
+  // Get the correct icon component
+  const Icon = IconMap.value[iconName as keyof typeof IconMap.value] || IconMap.value.default;
+
   return (
     <motion.div
       variants={cardVariants}
@@ -182,7 +182,7 @@ const ValueCard: React.FC<ValueCardProps> = ({ title, description, iconName, ind
       >
         <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-blue-500/20 to-indigo-500/10 flex items-center justify-center text-blue-300 group-hover:text-blue-200 transition-colors duration-300">
           <div className="w-8 h-8">
-            {LucideIcons && LucideIcons[iconName as keyof typeof LucideIcons]}
+            <Icon size={24} />
           </div>
         </div>
         

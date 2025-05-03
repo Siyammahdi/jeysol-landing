@@ -3,11 +3,7 @@
 import React, { useRef, useState, useCallback } from 'react';
 import { motion, useInView, Variants } from 'framer-motion';
 import { services } from '@/lib/mock-team';
-import { LucideIcon } from 'lucide-react';
-import dynamic from 'next/dynamic';
-
-// Dynamically import icons to avoid SSR issues
-const LucideIcons = dynamic(() => import('./IconMap'), { ssr: false });
+import { IconMap } from './IconMap';
 
 const WhatWeDo: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -221,7 +217,10 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
       {/* Icon */}
       <div className={`w-14 h-14 rounded-2xl ${colorClasses.iconBg} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
         <div className={`w-8 h-8 ${colorClasses.icon}`}>
-          {LucideIcons && LucideIcons[iconName as keyof typeof LucideIcons]}
+          {(() => {
+            const Icon = IconMap.service[iconName as keyof typeof IconMap.service] || IconMap.service.default;
+            return <Icon size={24} />;
+          })()}
         </div>
       </div>
       

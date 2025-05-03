@@ -129,7 +129,7 @@ const ContactCTA: React.FC = () => {
                 viewport={{ once: true }}
                 className="text-lg text-blue-100/70 max-w-2xl mx-auto mb-8"
               >
-                Let's transform your vision into reality. Our team is ready to bring your ideas to life with cutting-edge technology and innovative design.
+                Let&apos;s transform your vision into reality. Our team is ready to bring your ideas to life with cutting-edge technology and innovative design.
               </motion.p>
               
               <motion.div
@@ -188,7 +188,7 @@ const ContactCTA: React.FC = () => {
             </div>
             
             <blockquote className="text-lg italic text-blue-100/80 mt-6">
-              "The team at JeySol exceeded our expectations on every level. They took the time to understand our business needs and delivered a solution that has transformed our operations."
+                &quot;The team at JeySol exceeded our expectations on every level. They took the time to understand our business needs and delivered a solution that has transformed our operations.&quot;
             </blockquote>
             
             <footer className="mt-4">

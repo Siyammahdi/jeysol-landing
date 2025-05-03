@@ -5,15 +5,8 @@ import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import ClientPageRoot from '@/components/ClientPageRoot';
 
-// Define params type
-interface ProjectDetailPageProps {
-  params: {
-    slug: string;
-  };
-}
-
-// Server Component for proper params handling
-export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
+// Server Component
+export default async function Page({ params }: { params: { slug: string } }) {
   const { slug } = params;
   
   // Find the project in the dataset
@@ -40,4 +33,11 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
   return (
     <ClientPageRoot project={project} />
   );
+}
+
+// Generate static params for all project slugs at build time
+export async function generateStaticParams() {
+  return projectsData.map((project) => ({
+    slug: project.slug,
+  }));
 } 

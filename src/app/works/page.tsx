@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import { projectsData, Project } from '@/data/works';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -194,7 +194,7 @@ const WorksPage: React.FC = () => {
 
 const ProjectCard: React.FC<{ 
   project: Project; 
-  variants: any;
+  variants: Variants;
 }> = ({ project, variants }) => {
   // Add handleExternalLinkClick to open links in a new tab
   const handleExternalLinkClick = (e: React.MouseEvent<HTMLButtonElement>, url: string) => {

@@ -41,7 +41,7 @@ const CareersHero = () => {
           className="mb-3"
         >
           <span className="inline-block px-4 py-1.5 text-sm font-medium rounded-full bg-indigo-600/30 backdrop-blur-sm text-indigo-200 border border-indigo-500/20">
-            We're Hiring
+            We&apos;re Hiring
           </span>
         </motion.div>
         

@@ -3,7 +3,7 @@
 import React, { useRef, useState } from 'react';
 import { motion, AnimatePresence, useInView } from 'framer-motion';
 import { faqItems } from '@/data/careers';
-import { ChevronDown, ChevronUp, Check } from 'lucide-react';
+import { ChevronDown, ChevronUp } from 'lucide-react';
 
 const FAQItem = ({ question, answer }: { question: string; answer: string }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -225,7 +225,7 @@ const WhyWorkWithUs = () => {
           className="max-w-4xl mx-auto text-center"
         >
           <div className="relative">
-            <div className="absolute -top-8 -left-8 text-indigo-500 opacity-20 text-8xl">"</div>
+            <div className="absolute -top-8 -left-8 text-indigo-500 opacity-20 text-8xl">&quot;</div>
             <div className="relative z-10">
               <p className="text-xl md:text-2xl text-blue-100/90 italic mb-6">
                 Joining JeySol was one of the best decisions of my career. The supportive environment,
@@ -243,7 +243,7 @@ const WhyWorkWithUs = () => {
                 </div>
               </div>
             </div>
-            <div className="absolute -bottom-8 -right-8 text-indigo-500 opacity-20 text-8xl transform rotate-180">"</div>
+            <div className="absolute -bottom-8 -right-8 text-indigo-500 opacity-20 text-8xl transform rotate-180">&quot;</div>
           </div>
         </motion.div>
       </div>

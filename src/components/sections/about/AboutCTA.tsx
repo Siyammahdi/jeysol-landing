@@ -104,7 +104,7 @@ const AboutCTA: React.FC = () => {
             variants={itemVariants}
             className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight"
           >
-            Let's build something<br />
+            Let&apos;s build something<br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400">
               extraordinary together
             </span>
@@ -114,8 +114,8 @@ const AboutCTA: React.FC = () => {
             variants={itemVariants}
             className="text-lg md:text-xl text-blue-100/70 mb-10 max-w-3xl mx-auto"
           >
-            Whether you're looking to start a new project, enhance an existing one, or join our team,
-            we'd love to hear from you.
+            Whether you&apos;re looking to start a new project, enhance an existing one, or join our team,
+            we&apos;d love to hear from you.
           </motion.p>
           
           <motion.div 

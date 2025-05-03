@@ -1,6 +1,5 @@
 'use client';
 
-import React from 'react';
 import {
   Code,
   Globe,
@@ -24,7 +23,6 @@ import {
   Zap,
   Trophy,
   Smile,
-  default as LucideIcon,
 } from 'lucide-react';
 
 export type IconName = 

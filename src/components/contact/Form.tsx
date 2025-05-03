@@ -2,7 +2,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Envelope, Send, Check, X } from 'lucide-react';
+import { Send, Check, X } from 'lucide-react';
 
 interface FormState {
   name: string;
@@ -20,6 +20,20 @@ interface FormErrors {
 
 type SubmissionStatus = 'idle' | 'submitting' | 'success' | 'error';
 
+interface Particle {
+  id: number;
+  x: number;
+  y: number;
+  size: number;
+  color: string;
+  velocity: {
+    x: number;
+    y: number;
+  };
+  opacity: number;
+  duration: number;
+}
+
 const Form: React.FC = () => {
   const [formState, setFormState] = useState<FormState>({
     name: '',
@@ -31,7 +45,7 @@ const Form: React.FC = () => {
   const [status, setStatus] = useState<SubmissionStatus>('idle');
   const [focused, setFocused] = useState<keyof FormState | null>(null);
   const formRef = useRef<HTMLFormElement>(null);
-  const [particles, setParticles] = useState<Array<any>>([]);
+  const [particles, setParticles] = useState<Particle[]>([]);
   
   // Generate particles for success animation
   useEffect(() => {
@@ -125,7 +139,7 @@ const Form: React.FC = () => {
     try {
       await new Promise(resolve => setTimeout(resolve, 1500));
       setStatus('success');
-    } catch (error) {
+    } catch {
       setStatus('error');
     }
   };
@@ -189,7 +203,7 @@ const Form: React.FC = () => {
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-blue-500 via-indigo-500 to-violet-500 mx-auto rounded-full mb-6" />
           <p className="text-lg text-blue-100/70 max-w-2xl mx-auto">
-            Fill out the form below and we'll get back to you as soon as possible
+            Fill out the form below and we&apos;ll get back to you as soon as possible
           </p>
         </motion.div>
         
@@ -273,7 +287,7 @@ const Form: React.FC = () => {
                       transition={{ delay: 0.4, duration: 0.5 }}
                       className="text-blue-100/70 max-w-md"
                     >
-                      Thank you for reaching out. We'll respond to your message as soon as possible.
+                      Thank you for reaching out. We&apos;ll respond to your message as soon as possible.
                     </motion.p>
                   </motion.div>
                 ) : (

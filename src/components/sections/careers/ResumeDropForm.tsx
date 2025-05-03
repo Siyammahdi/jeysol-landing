@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useRef, useState, ChangeEvent, FormEvent } from 'react';
-import { motion, AnimatePresence, useInView } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 import { jobPostings } from '@/data/careers';
 import { Upload, CheckCircle2, XCircle, Send, Loader2 } from 'lucide-react';
 import Image from 'next/image';
@@ -216,7 +216,7 @@ const ResumeDropForm = () => {
                 <span className="text-indigo-400 font-medium text-sm uppercase tracking-wider">Join Our Team</span>
                 <h2 className="text-3xl font-bold text-white mt-2">Drop Your Resume</h2>
                 <p className="text-blue-100/70 mt-3">
-                  Don't see a position that matches your skills? Submit your resume for future opportunities.
+                  Don&apos;t see a position that matches your skills? Submit your resume for future opportunities.
                   Our team will review your application and reach out when a suitable role becomes available.
                 </p>
               </motion.div>

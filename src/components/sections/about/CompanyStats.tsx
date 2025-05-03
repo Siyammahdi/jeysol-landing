@@ -21,7 +21,6 @@ const CountUp: React.FC<{ end: number; suffix?: string; prefix?: string; duratio
     
     let startTime: number;
     let animationFrame: number;
-    const totalFrames = 60 * duration; // 60fps for 2 seconds
     
     const counter = (timestamp: number) => {
       if (!startTime) startTime = timestamp;
@@ -117,7 +116,7 @@ const CompanyStats: React.FC = () => {
           animate={isInView ? "visible" : "hidden"}
         >
           {companyStats.map((stat, index) => {
-            const Icon = IconMap.stats[stat.icon] || IconMap.stats.default;
+            const Icon = IconMap.stats[stat.icon as keyof typeof IconMap.stats] || IconMap.stats.default;
             
             return (
               <motion.div

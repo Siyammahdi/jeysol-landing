@@ -64,7 +64,7 @@ const OurStory: React.FC = () => {
               className="space-y-4 text-lg text-blue-100/70"
             >
               <p>
-                JeySol began in 2016 as a small team of passionate designers and developers working out of a shared office space. Our founders, Alex Johnson and Maya Rodriguez, believed there was a better way to create digital experiences that truly served people's needs.
+                JeySol began in 2016 as a small team of passionate designers and developers working out of a shared office space. Our founders, Alex Johnson and Maya Rodriguez, believed there was a better way to create digital experiences that truly served people&apos;s needs.
               </p>
               <p>
                 What started as a boutique web design agency quickly evolved into a full-service digital solutions provider as we expanded our expertise and client base. By 2019, we had established an international presence with clients spanning three continents.
@@ -81,7 +81,7 @@ const OurStory: React.FC = () => {
               transition={{ duration: 0.6, delay: 0.3 }}
               className="mt-8 pl-4 border-l-2 border-blue-500 italic text-blue-100"
             >
-              "We founded JeySol with the belief that technology should amplify human potential, not replace it. That principle still guides everything we do today."
+              &quot;We founded JeySol with the belief that technology should amplify human potential, not replace it. That principle still guides everything we do today.&quot;
               <footer className="mt-2 text-blue-300/70 not-italic text-sm">
                 — Alex Johnson, Founder & CEO
               </footer>
