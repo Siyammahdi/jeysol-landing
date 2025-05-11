@@ -2,8 +2,8 @@
 
 import React, { useRef, useState, useCallback } from 'react';
 import { motion, useInView, Variants } from 'framer-motion';
-import { services } from '@/lib/mock-team';
-import { IconMap } from './IconMap';
+import { services } from '@/lib/about-services';
+import { Code, Smartphone, Cpu, Layout, Globe, Printer } from 'lucide-react';
 
 const WhatWeDo: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -32,7 +32,7 @@ const WhatWeDo: React.FC = () => {
             repeat: Infinity,
             repeatType: "reverse"
           }}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] h-[90%] rounded-full bg-gradient-radial from-blue-500/5 via-indigo-500/3 to-transparent blur-3xl"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] h-[90%] rounded-full bg-gradient-radial from-blue-500/5 via-[#FD673A]/3 to-transparent blur-3xl"
         />
       </div>
       
@@ -48,13 +48,13 @@ const WhatWeDo: React.FC = () => {
               transition: "opacity 0.6s ease-out, transform 0.8s ease-out"
             }}
           >
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-indigo-400 to-teal-400">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-[#FD673A] to-blue-400">
               What We Do
             </span>
           </motion.h2>
           
           <motion.div 
-            className="w-20 h-1 bg-gradient-to-r from-blue-500 via-indigo-500 to-teal-500 mx-auto rounded-full mb-6"
+            className="w-20 h-1 bg-gradient-to-r from-blue-500 via-[#FD673A] to-blue-500 mx-auto rounded-full mb-6"
             initial={{ width: 0, opacity: 0 }}
             animate={isHeadingInView ? { width: 80, opacity: 1 } : { width: 0, opacity: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -79,8 +79,7 @@ const WhatWeDo: React.FC = () => {
               key={service.id}
               title={service.title}
               description={service.description}
-              iconName={service.icon}
-              color={service.color}
+              icon={service.icon}
               index={index}
             />
           ))}
@@ -94,84 +93,39 @@ const WhatWeDo: React.FC = () => {
 interface ServiceCardProps {
   title: string;
   description: string;
-  iconName: string;
-  color: string;
+  icon: string;
   index: number;
 }
 
 const ServiceCard: React.FC<ServiceCardProps> = ({ 
   title, 
   description, 
-  iconName, 
-  color, 
+  icon, 
   index 
 }) => {
   const cardRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(cardRef, { once: true, amount: 0.3 });
   const [isHovered, setIsHovered] = useState(false);
   
-  // Get color classes based on the color prop
-  const getColorClasses = useCallback((colorName: string) => {
-    switch(colorName) {
-      case 'blue':
-        return {
-          border: 'border-blue-500/20',
-          gradient: 'from-blue-600/20 to-blue-900/10',
-          hover: 'hover:border-blue-500/30',
-          icon: 'text-blue-400',
-          iconBg: 'bg-blue-500/10',
-          line: 'bg-blue-400'
-        };
-      case 'purple':
-        return {
-          border: 'border-purple-500/20',
-          gradient: 'from-purple-600/20 to-purple-900/10',
-          hover: 'hover:border-purple-500/30',
-          icon: 'text-purple-400',
-          iconBg: 'bg-purple-500/10',
-          line: 'bg-purple-400'
-        };
-      case 'green':
-        return {
-          border: 'border-green-500/20',
-          gradient: 'from-green-600/20 to-green-900/10',
-          hover: 'hover:border-green-500/30',
-          icon: 'text-green-400',
-          iconBg: 'bg-green-500/10',
-          line: 'bg-green-400'
-        };
-      case 'orange':
-        return {
-          border: 'border-orange-500/20',
-          gradient: 'from-orange-600/20 to-orange-900/10',
-          hover: 'hover:border-orange-500/30',
-          icon: 'text-orange-400',
-          iconBg: 'bg-orange-500/10',
-          line: 'bg-orange-400'
-        };
-      case 'teal':
-        return {
-          border: 'border-teal-500/20',
-          gradient: 'from-teal-600/20 to-teal-900/10',
-          hover: 'hover:border-teal-500/30',
-          icon: 'text-teal-400',
-          iconBg: 'bg-teal-500/10',
-          line: 'bg-teal-400'
-        };
-      case 'indigo':
+  // Get the appropriate icon component based on the service type
+  const getIconComponent = (iconName: string) => {
+    switch(iconName) {
+      case 'code':
+        return <Code size={24} />;
+      case 'smartphone':
+        return <Smartphone size={24} />;
+      case 'cpu':
+        return <Cpu size={24} />;
+      case 'layout':
+        return <Layout size={24} />;
+      case 'globe':
+        return <Globe size={24} />;
+      case 'cloud':
+        return <Printer size={24} />;
       default:
-        return {
-          border: 'border-indigo-500/20',
-          gradient: 'from-indigo-600/20 to-indigo-900/10',
-          hover: 'hover:border-indigo-500/30',
-          icon: 'text-indigo-400',
-          iconBg: 'bg-indigo-500/10',
-          line: 'bg-indigo-400'
-        };
+        return <Code size={24} />;
     }
-  }, []);
-
-  const colorClasses = getColorClasses(color);
+  };
   
   // Animation variants
   const cardVariants: Variants = {
@@ -207,20 +161,17 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
       animate={isInView ? "visible" : "hidden"}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className={`rounded-xl p-6 md:p-8 bg-gradient-to-br ${colorClasses.gradient} border ${colorClasses.border} ${colorClasses.hover} transition-all duration-300 h-full flex flex-col group`}
+      className={`rounded-xl p-6 md:p-8 bg-gradient-to-br from-blue-600/20 to-[#FD673A]/10 border border-[#FD673A]/20 hover:border-[#FD673A]/30 transition-all duration-300 h-full flex flex-col group`}
       whileHover={{ 
         y: -8,
-        boxShadow: `0 10px 40px -10px rgba(var(--color-${color}-500), 0.3)`,
+        boxShadow: '0 10px 40px -10px rgba(253, 103, 58, 0.3)',
         transition: { duration: 0.3 }
       }}
     >
       {/* Icon */}
-      <div className={`w-14 h-14 rounded-2xl ${colorClasses.iconBg} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
-        <div className={`w-8 h-8 ${colorClasses.icon}`}>
-          {(() => {
-            const Icon = IconMap.service[iconName as keyof typeof IconMap.service] || IconMap.service.default;
-            return <Icon size={24} />;
-          })()}
+      <div className={`w-14 h-14 rounded-2xl bg-[#FD673A]/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
+        <div className={`w-8 h-8 text-[#FD673A]`}>
+          {getIconComponent(icon)}
         </div>
       </div>
       
@@ -242,7 +193,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
       {/* Divider */}
       <div className="mt-auto">
         <motion.div
-          className={`h-px ${colorClasses.line} mt-auto`}
+          className={`h-px bg-[#FD673A] mt-auto`}
           initial={{ width: "20%" }}
           animate={{ width: isHovered ? "100%" : "20%" }}
           transition={{ duration: 0.3 }}

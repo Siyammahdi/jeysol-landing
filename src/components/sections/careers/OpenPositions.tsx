@@ -21,15 +21,19 @@ const JobCard = ({ job }: { job: JobPosting }) => {
     <motion.div 
       layout
       className="rounded-xl overflow-hidden bg-gradient-to-br from-indigo-950/40 via-indigo-900/30 to-indigo-900/30 
-        backdrop-blur-sm border border-indigo-500/20 shadow-lg shadow-indigo-900/10"
+        backdrop-blur-sm border border-indigo-500/20 shadow-lg shadow-indigo-900/10 hover:shadow-[#FD673A]/10 transition-all duration-300"
+      whileHover={{
+        boxShadow: "0 10px 30px rgba(253, 103, 58, 0.15)",
+        borderColor: "rgba(253, 103, 58, 0.3)"
+      }}
     >
       <motion.div 
         layout="position"
-        className={`p-6 cursor-pointer ${isExpanded ? 'border-b border-indigo-500/20' : ''}`}
+        className={`p-6 cursor-pointer ${isExpanded ? 'border-b border-[#FD673A]/20' : ''}`}
         onClick={toggleExpand}
       >
         <div className="flex justify-between items-start mb-3">
-          <span className="inline-block px-3 py-1 text-xs font-medium rounded-full bg-indigo-600/30 text-indigo-300 border border-indigo-500/30">
+          <span className="inline-block px-3 py-1 text-xs font-medium rounded-full bg-gradient-to-r from-[#FD673A]/20 to-indigo-600/30 text-[#FD673A] border border-[#FD673A]/30">
             {job.category}
           </span>
           <button
@@ -37,27 +41,27 @@ const JobCard = ({ job }: { job: JobPosting }) => {
               e.stopPropagation();
               toggleExpand();
             }}
-            className="text-indigo-400 hover:text-indigo-300 transition-colors"
+            className="text-[#FD673A] hover:text-[#FD673A]/80 transition-colors"
           >
             {isExpanded ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
           </button>
         </div>
         
-        <h3 className="text-xl md:text-2xl font-bold text-white mb-3">
+        <h3 className="text-xl md:text-2xl font-bold text-white mb-3 group-hover:text-[#FD673A]/90 transition-colors">
           {job.title}
         </h3>
         
         <div className="grid grid-cols-2 md:flex gap-4 md:gap-6 mb-4 text-sm text-blue-100/70">
           <div className="flex items-center">
-            <MapPin size={16} className="mr-2 text-indigo-400" />
+            <MapPin size={16} className="mr-2 text-[#FD673A]" />
             <span>{job.location}</span>
           </div>
           <div className="flex items-center">
-            <Clock size={16} className="mr-2 text-indigo-400" />
+            <Clock size={16} className="mr-2 text-[#FD673A]" />
             <span>{job.type}</span>
           </div>
           <div className="flex items-center">
-            <Calendar size={16} className="mr-2 text-indigo-400" />
+            <Calendar size={16} className="mr-2 text-[#FD673A]" />
             <span>Posted: {formatDate(job.postedDate)}</span>
           </div>
         </div>
@@ -79,7 +83,7 @@ const JobCard = ({ job }: { job: JobPosting }) => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div>
                 <h4 className="text-lg font-semibold text-white mb-3 flex items-center">
-                  <span className="w-6 h-6 rounded-full bg-indigo-600/30 flex items-center justify-center text-indigo-400 mr-2 text-sm">
+                  <span className="w-6 h-6 rounded-full bg-gradient-to-br from-[#FD673A]/30 to-indigo-600/30 flex items-center justify-center text-white mr-2 text-sm">
                     1
                   </span>
                   Responsibilities
@@ -87,7 +91,7 @@ const JobCard = ({ job }: { job: JobPosting }) => {
                 <ul className="space-y-2 text-blue-100/70">
                   {job.responsibilities.map((item, i) => (
                     <li key={i} className="flex items-start">
-                      <ArrowDownRight size={16} className="text-indigo-400 mr-2 mt-1 flex-shrink-0" />
+                      <ArrowDownRight size={16} className="text-[#FD673A] mr-2 mt-1 flex-shrink-0" />
                       <span>{item}</span>
                     </li>
                   ))}
@@ -96,7 +100,7 @@ const JobCard = ({ job }: { job: JobPosting }) => {
               
               <div>
                 <h4 className="text-lg font-semibold text-white mb-3 flex items-center">
-                  <span className="w-6 h-6 rounded-full bg-indigo-600/30 flex items-center justify-center text-indigo-400 mr-2 text-sm">
+                  <span className="w-6 h-6 rounded-full bg-gradient-to-br from-blue-600/30 to-[#FD673A]/30 flex items-center justify-center text-white mr-2 text-sm">
                     2
                   </span>
                   Requirements
@@ -104,7 +108,7 @@ const JobCard = ({ job }: { job: JobPosting }) => {
                 <ul className="space-y-2 text-blue-100/70">
                   {job.requirements.map((item, i) => (
                     <li key={i} className="flex items-start">
-                      <ArrowDownRight size={16} className="text-indigo-400 mr-2 mt-1 flex-shrink-0" />
+                      <ArrowDownRight size={16} className="text-[#FD673A] mr-2 mt-1 flex-shrink-0" />
                       <span>{item}</span>
                     </li>
                   ))}
@@ -114,7 +118,7 @@ const JobCard = ({ job }: { job: JobPosting }) => {
             
             <div className="mt-6">
               <h4 className="text-lg font-semibold text-white mb-3 flex items-center">
-                <span className="w-6 h-6 rounded-full bg-indigo-600/30 flex items-center justify-center text-indigo-400 mr-2 text-sm">
+                <span className="w-6 h-6 rounded-full bg-gradient-to-br from-[#FD673A]/30 to-blue-600/30 flex items-center justify-center text-white mr-2 text-sm">
                   3
                 </span>
                 Required Skills
@@ -124,7 +128,7 @@ const JobCard = ({ job }: { job: JobPosting }) => {
                   <span 
                     key={i} 
                     className="inline-block px-3 py-1.5 text-sm rounded-full bg-indigo-900/50 
-                      text-indigo-300 border border-indigo-500/20"
+                      text-indigo-300 border border-indigo-500/20 hover:border-[#FD673A]/30 hover:text-[#FD673A]/90 transition-colors duration-300"
                   >
                     {skill}
                   </span>
@@ -140,10 +144,15 @@ const JobCard = ({ job }: { job: JobPosting }) => {
             >
               <a 
                 href="#resume-drop" 
-                className="px-6 py-2.5 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white 
-                  flex items-center transition-colors duration-300 shadow-md shadow-indigo-600/20"
+                className="group relative px-6 py-2.5 rounded-lg text-white flex items-center transition-all duration-300"
               >
-                Apply for this position
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-[#FD673A] to-blue-500 rounded-lg blur opacity-30 group-hover:opacity-60 transition duration-300"></div>
+                <div className="relative bg-[#0A0F2C] rounded-lg px-6 py-2.5 flex items-center">
+                  <span>Apply for this position</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </svg>
+                </div>
               </a>
             </motion.div>
           </motion.div>
@@ -171,8 +180,19 @@ const OpenPositions = () => {
       className="py-24 relative"
       id="open-positions"
     >
-      {/* Background elements */}
+      {/* Enhanced Background elements */}
       <div className="absolute inset-0 bg-[#090E27]/30"></div>
+      
+      {/* Subtle gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#FD673A]/5 via-transparent to-blue-500/5"></div>
+      
+      {/* Subtle dot pattern */}
+      <div className="absolute inset-0 opacity-[0.03]" 
+        style={{ 
+          backgroundImage: 'radial-gradient(circle, rgba(253, 103, 58, 0.4) 1px, transparent 1px)', 
+          backgroundSize: '30px 30px' 
+        }}
+      />
       
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <div className="text-center mb-16">
@@ -182,7 +202,7 @@ const OpenPositions = () => {
             transition={{ duration: 0.6 }}
             className="mb-3"
           >
-            <span className="inline-block px-4 py-1.5 text-sm font-medium rounded-full bg-indigo-600/30 backdrop-blur-sm text-indigo-200 border border-indigo-500/20">
+            <span className="inline-block px-4 py-1.5 text-sm font-medium rounded-full bg-gradient-to-r from-[#FD673A]/20 to-blue-500/20 backdrop-blur-sm text-[#FD673A] border border-[#FD673A]/30 shadow-lg shadow-[#FD673A]/5">
               Career Opportunities
             </span>
           </motion.div>
@@ -191,10 +211,31 @@ const OpenPositions = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-3xl md:text-4xl font-bold text-white mb-4"
+            className="text-3xl md:text-4xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-[#FD673A] to-indigo-400"
           >
             Open Positions
           </motion.h2>
+          
+          <motion.div 
+            className="w-20 h-[2px] mx-auto mb-6 overflow-hidden relative"
+            initial={{ width: 0, opacity: 0 }}
+            animate={isInView ? { width: 80, opacity: 1 } : { width: 0, opacity: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <motion.div
+              animate={{
+                x: ['-100%', '100%'],
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                repeatType: "loop",
+                ease: "easeInOut"
+              }}
+              className="absolute inset-0 bg-gradient-to-r from-blue-500/0 via-[#FD673A] to-blue-400/0 rounded-full w-full h-full"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-500 via-[#FD673A] to-blue-400 rounded-full opacity-40" />
+          </motion.div>
           
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
@@ -206,7 +247,7 @@ const OpenPositions = () => {
           </motion.p>
         </div>
         
-        {/* Category filter */}
+        {/* Category filter - updated with gradient effects */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
@@ -219,8 +260,8 @@ const OpenPositions = () => {
               onClick={() => setActiveFilter(category)}
               className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                 activeFilter === category 
-                  ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/20' 
-                  : 'bg-indigo-900/30 text-indigo-300 border border-indigo-500/20 hover:bg-indigo-800/40'
+                  ? 'bg-gradient-to-r from-[#FD673A] to-blue-500 text-white shadow-md shadow-[#FD673A]/20' 
+                  : 'bg-indigo-900/30 text-blue-300 border border-indigo-500/20 hover:border-[#FD673A]/30 hover:text-[#FD673A]'
               }`}
             >
               {category}
@@ -252,17 +293,11 @@ const OpenPositions = () => {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.4 }}
-                className="text-center py-16"
+                className="bg-gradient-to-br from-indigo-950/40 to-indigo-900/30 backdrop-blur-sm
+                  border border-indigo-500/20 rounded-xl p-12 text-center"
               >
-                <p className="text-blue-100/70 text-lg">
-                  No open positions in this category right now. Check back soon or drop your resume for future opportunities.
-                </p>
-                <a 
-                  href="#resume-drop" 
-                  className="inline-block mt-4 px-6 py-2.5 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white transition-colors duration-300"
-                >
-                  Submit Your Resume
-                </a>
+                <p className="text-lg text-blue-100/70">No positions available in this category at the moment.</p>
+                <p className="text-[#FD673A] mt-2">Please check back later or explore other categories.</p>
               </motion.div>
             )}
           </AnimatePresence>

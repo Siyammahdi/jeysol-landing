@@ -82,7 +82,7 @@ const AboutSection: React.FC = () => {
         {/* Floating Orb 1 */}
         <motion.div
           style={{ y: bgY1, rotate: bgRotate }}
-          className="absolute -top-[10%] right-[5%] w-[40%] h-[40%] rounded-full bg-gradient-radial from-blue-600/10 via-blue-600/5 to-transparent blur-3xl"
+          className="absolute -top-[10%] right-[5%] w-[40%] h-[40%] rounded-full bg-gradient-radial from-[#FD673A]/10 via-blue-600/5 to-transparent blur-3xl"
         />
         
         {/* Floating Orb 2 */}
@@ -115,8 +115,8 @@ const AboutSection: React.FC = () => {
             <defs>
               <linearGradient id="constellation-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
                 <stop offset="0%" stopColor="#3B82F6" stopOpacity="0.5" />
-                <stop offset="50%" stopColor="#8B5CF6" stopOpacity="0.5" />
-                <stop offset="100%" stopColor="#14B8A6" stopOpacity="0.5" />
+                <stop offset="50%" stopColor="#FD673A" stopOpacity="0.5" />
+                <stop offset="100%" stopColor="#4F46E5" stopOpacity="0.5" />
               </linearGradient>
             </defs>
           </svg>
@@ -135,13 +135,13 @@ const AboutSection: React.FC = () => {
               transition: "opacity 0.6s ease-out, transform 0.8s ease-out"
             }}
           >
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-indigo-400 to-teal-400">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-[#FD673A] to-indigo-400">
               About Us
             </span>
           </motion.h2>
           
           <motion.div 
-            className="w-20 h-1 bg-gradient-to-r from-blue-500 via-indigo-500 to-teal-500 mx-auto rounded-full mb-6"
+            className="w-20 h-1 bg-gradient-to-r from-blue-500 via-[#FD673A] to-indigo-500 mx-auto rounded-full mb-6"
             initial={{ width: 0, opacity: 0 }}
             animate={isHeadingInView ? { width: 80, opacity: 1 } : { width: 0, opacity: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -187,7 +187,7 @@ const AboutSection: React.FC = () => {
           transition={{ duration: 0.8, delay: 0.5 }}
           viewport={{ once: true, amount: 0.8 }}
         >
-          <div className="inline-block px-6 py-3 rounded-full bg-gradient-to-r from-blue-900/30 to-violet-900/30 backdrop-blur-sm border border-blue-500/20">
+          <div className="inline-block px-6 py-3 rounded-full bg-gradient-to-r from-[#FD673A]/20 to-blue-900/30 backdrop-blur-sm border border-[#FD673A]/20">
             <p className="text-lg text-blue-100/90 font-light italic">
               &ldquo;Building tomorrow&rsquo;s solutions, today.&rdquo;
             </p>

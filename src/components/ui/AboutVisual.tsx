@@ -126,13 +126,7 @@ const AboutVisual: React.FC = () => {
         >
           <div className="w-full h-full rounded-lg bg-gradient-to-tr from-blue-600/30 to-blue-400/20 border border-blue-500/20 shadow-lg shadow-blue-500/10 flex items-center justify-center transform rotate-12">
             <svg className="w-7 h-7 text-blue-100/90" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M20 7L12 3L4 7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-              <path d="M20 12V7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-              <path d="M12 17V12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-              <path d="M12 12L4 7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-              <path d="M20 12L12 17L4 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-              <path d="M4 17V12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-              <path d="M12 21.5V17" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </div>
         </motion.div>
@@ -144,12 +138,9 @@ const AboutVisual: React.FC = () => {
           animate="animate"
           className="absolute bottom-[5%] left-1/2 -translate-x-1/2 w-14 h-14"
         >
-          <div className="w-full h-full rounded-full bg-gradient-to-tr from-violet-600/30 to-violet-400/20 border border-violet-500/20 shadow-lg shadow-violet-500/10 flex items-center justify-center">
+          <div className="w-full h-full rounded-full bg-gradient-to-tr from-[#FD673A]/30 to-[#FD673A]/20 border border-[#FD673A]/20 shadow-lg shadow-[#FD673A]/10 flex items-center justify-center">
             <svg className="w-7 h-7 text-blue-100/90" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M21 7.5V6.1C21 4.6 19.8 3.4 18.3 3.5H5.7C4.2 3.4 3 4.6 3 6.1V7.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-              <path d="M3 12.8V16.9C3 18.4 4.2 19.6 5.7 19.5H18.3C19.8 19.6 21 18.4 21 16.9V12.8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-              <path d="M3 12.8C3 11.3 4.2 10.1 5.7 10.2H18.3C19.8 10.1 21 11.3 21 12.8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-              <path d="M7.5 16.2001V15.0001C7.5 14.6001 7.8 14.2001 8.3 14.2001H9.5C9.9 14.2001 10.3 14.5001 10.3 15.0001V16.2001C10.3 16.6001 10 17.0001 9.5 17.0001H8.3C7.8 17.0001 7.5 16.6001 7.5 16.2001Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </div>
         </motion.div>
@@ -161,16 +152,9 @@ const AboutVisual: React.FC = () => {
           animate="animate"
           className="absolute top-1/2 -translate-y-1/2 left-[5%] w-14 h-14"
         >
-          <div className="w-full h-full rounded-lg bg-gradient-to-tr from-teal-600/30 to-teal-400/20 border border-teal-500/20 shadow-lg shadow-teal-500/10 flex items-center justify-center transform -rotate-12">
+          <div className="w-full h-full rounded-lg bg-gradient-to-tr from-blue-600/30 to-blue-400/20 border border-blue-500/20 shadow-lg shadow-blue-500/10 flex items-center justify-center transform -rotate-12">
             <svg className="w-7 h-7 text-blue-100/90" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M10.8496 5.00005C10.1696 5.00005 9.50961 5.12005 8.88961 5.34005" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-              <path d="M13.1603 19C14.2603 19 15.3002 18.75 16.2202 18.31" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-              <path d="M5.02051 7.98008C4.39051 9.15008 4.04053 10.5001 4.04053 11.9201C4.04053 13.3001 4.37051 14.5901 4.96051 15.7301" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-              <path d="M18.5 9.5C18.86 10.24 19.04 11.08 19.04 11.92C19.04 16.19 15.6 19.7 11.37 19.98" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-              <path d="M18.5904 5.56006C17.8704 4.69006 16.95 3.98001 15.9 3.50001C13.92 2.66001 11.68 2.64004 9.70996 3.49004C9.60996 3.54004 9.50996 3.59005 9.40996 3.65005" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-              <path d="M8.5 10.5V14.5" stroke="currentColor" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round"/>
-              <path d="M15.5 10.5V14.5" stroke="currentColor" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round"/>
-              <path d="M12 8.5V16.5" stroke="currentColor" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0021 18V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v12a2.25 2.25 0 002.25 2.25z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </div>
         </motion.div>
@@ -182,11 +166,9 @@ const AboutVisual: React.FC = () => {
           animate="animate"
           className="absolute top-1/2 -translate-y-1/2 right-[5%] w-14 h-14"
         >
-          <div className="w-full h-full rounded-full bg-gradient-to-tr from-indigo-600/30 to-indigo-400/20 border border-indigo-500/20 shadow-lg shadow-indigo-500/10 flex items-center justify-center">
+          <div className="w-full h-full rounded-full bg-gradient-to-tr from-[#FD673A]/30 to-[#FD673A]/20 border border-[#FD673A]/20 shadow-lg shadow-[#FD673A]/10 flex items-center justify-center">
             <svg className="w-7 h-7 text-blue-100/90" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M8.5 12H14.5" stroke="currentColor" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round"/>
-              <path d="M12.5 15L15.5 12L12.5 9" stroke="currentColor" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round"/>
-              <path d="M4 6C2.75 7.67 2 9.75 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2C10.57 2 9.2 2.3 7.97 2.85" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M8 9V4m0 5c0 1.105.895 2 2 2s2-.895 2-2-.895-2-2-2-2 .895-2 2zM8 15v5m8-5v5M8 15c0 1.105.895 2 2 2s2-.895 2-2-.895-2-2-2-2 .895-2 2zM16 15c0 1.105.895 2 2 2s2-.895 2-2-.895-2-2-2-2 .895-2 2zM16 9V4m0 5c0 1.105.895 2 2 2s2-.895 2-2-.895-2-2-2-2 .895-2 2z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </div>
         </motion.div>
@@ -206,7 +188,7 @@ const AboutVisual: React.FC = () => {
         <defs>
           <linearGradient id="line-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" stopColor="#3B82F6" stopOpacity="0.6" />
-            <stop offset="100%" stopColor="#14B8A6" stopOpacity="0.6" />
+            <stop offset="100%" stopColor="#FD673A" stopOpacity="0.6" />
           </linearGradient>
         </defs>
       </svg>
@@ -216,7 +198,7 @@ const AboutVisual: React.FC = () => {
         variants={pulseVariants}
         initial="initial"
         animate="animate"
-        className="absolute inset-[10%] rounded-full bg-gradient-to-r from-blue-500/5 via-violet-500/5 to-teal-500/5 blur-3xl"
+        className="absolute inset-[10%] rounded-full bg-gradient-to-r from-blue-500/5 via-[#FD673A]/5 to-blue-500/5 blur-3xl"
       />
     </motion.div>
   );

@@ -193,8 +193,19 @@ const ResumeDropForm = () => {
       className="py-24 relative"
       id="resume-drop"
     >
-      {/* Background elements */}
+      {/* Enhanced Background elements */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#090E27]/50 to-[#0A0F2C]"></div>
+      
+      {/* Subtle dot pattern */}
+      <div className="absolute inset-0 opacity-[0.03]" 
+        style={{ 
+          backgroundImage: 'radial-gradient(circle, rgba(253, 103, 58, 0.4) 1px, transparent 1px)', 
+          backgroundSize: '30px 30px' 
+        }}
+      />
+      
+      {/* Subtle gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#FD673A]/5 via-transparent to-blue-500/5"></div>
       
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <div className="max-w-7xl mx-auto">
@@ -213,8 +224,8 @@ const ResumeDropForm = () => {
                 transition={{ duration: 0.6, delay: 0.1 }}
                 className="mb-8"
               >
-                <span className="text-indigo-400 font-medium text-sm uppercase tracking-wider">Join Our Team</span>
-                <h2 className="text-3xl font-bold text-white mt-2">Drop Your Resume</h2>
+                <span className="text-[#FD673A] font-medium text-sm uppercase tracking-wider">Join Our Team</span>
+                <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white via-[#FD673A] to-white mt-2">Drop Your Resume</h2>
                 <p className="text-blue-100/70 mt-3">
                   Don&apos;t see a position that matches your skills? Submit your resume for future opportunities.
                   Our team will review your application and reach out when a suitable role becomes available.
@@ -241,8 +252,8 @@ const ResumeDropForm = () => {
                     onChange={handleInputChange}
                     className={`w-full px-4 py-3 rounded-lg bg-indigo-950/50 border ${
                       errors.fullName ? 'border-red-500' : 'border-indigo-500/30'
-                    } text-white placeholder-indigo-300/50 focus:outline-none focus:border-indigo-400 
-                    focus:ring-2 focus:ring-indigo-500/20 transition-all duration-300`}
+                    } text-white placeholder-indigo-300/50 focus:outline-none focus:border-[#FD673A]/70 
+                    focus:ring-2 focus:ring-[#FD673A]/20 transition-all duration-300`}
                     placeholder="Enter your full name"
                   />
                   {errors.fullName && (
@@ -266,8 +277,8 @@ const ResumeDropForm = () => {
                     onChange={handleInputChange}
                     className={`w-full px-4 py-3 rounded-lg bg-indigo-950/50 border ${
                       errors.email ? 'border-red-500' : 'border-indigo-500/30'
-                    } text-white placeholder-indigo-300/50 focus:outline-none focus:border-indigo-400 
-                    focus:ring-2 focus:ring-indigo-500/20 transition-all duration-300`}
+                    } text-white placeholder-indigo-300/50 focus:outline-none focus:border-[#FD673A]/70 
+                    focus:ring-2 focus:ring-[#FD673A]/20 transition-all duration-300`}
                     placeholder="you@example.com"
                   />
                   {errors.email && (
@@ -290,8 +301,8 @@ const ResumeDropForm = () => {
                     onChange={handleInputChange}
                     className={`w-full px-4 py-3 rounded-lg bg-indigo-950/50 border ${
                       errors.role ? 'border-red-500' : 'border-indigo-500/30'
-                    } text-white placeholder-indigo-300/50 focus:outline-none focus:border-indigo-400 
-                    focus:ring-2 focus:ring-indigo-500/20 transition-all duration-300 appearance-none`}
+                    } text-white placeholder-indigo-300/50 focus:outline-none focus:border-[#FD673A]/70 
+                    focus:ring-2 focus:ring-[#FD673A]/20 transition-all duration-300 appearance-none`}
                   >
                     <option value="" disabled>Select a position</option>
                     <option value="general">General Application</option>
@@ -312,7 +323,7 @@ const ResumeDropForm = () => {
                 {/* Portfolio URL */}
                 <div>
                   <label htmlFor="portfolioUrl" className="block text-sm font-medium text-indigo-200 mb-1">
-                    Portfolio / GitHub URL <span className="text-indigo-400/70">(optional)</span>
+                    Portfolio / GitHub URL <span className="text-[#FD673A]/70">(optional)</span>
                   </label>
                   <input
                     type="url"
@@ -322,8 +333,8 @@ const ResumeDropForm = () => {
                     onChange={handleInputChange}
                     className={`w-full px-4 py-3 rounded-lg bg-indigo-950/50 border ${
                       errors.portfolioUrl ? 'border-red-500' : 'border-indigo-500/30'
-                    } text-white placeholder-indigo-300/50 focus:outline-none focus:border-indigo-400 
-                    focus:ring-2 focus:ring-indigo-500/20 transition-all duration-300`}
+                    } text-white placeholder-indigo-300/50 focus:outline-none focus:border-[#FD673A]/70 
+                    focus:ring-2 focus:ring-[#FD673A]/20 transition-all duration-300`}
                     placeholder="https://github.com/yourusername"
                   />
                   {errors.portfolioUrl && (
@@ -347,8 +358,8 @@ const ResumeDropForm = () => {
                     rows={5}
                     className={`w-full px-4 py-3 rounded-lg bg-indigo-950/50 border ${
                       errors.coverLetter ? 'border-red-500' : 'border-indigo-500/30'
-                    } text-white placeholder-indigo-300/50 focus:outline-none focus:border-indigo-400 
-                    focus:ring-2 focus:ring-indigo-500/20 transition-all duration-300`}
+                    } text-white placeholder-indigo-300/50 focus:outline-none focus:border-[#FD673A]/70 
+                    focus:ring-2 focus:ring-[#FD673A]/20 transition-all duration-300`}
                     placeholder="Tell us about yourself, your experience, and why you want to join our team..."
                   />
                   {errors.coverLetter && (
@@ -372,7 +383,7 @@ const ResumeDropForm = () => {
                         ? 'border-red-500 bg-red-500/10' 
                         : formData.resumeFile 
                           ? 'border-green-500/50 bg-green-500/5' 
-                          : 'border-indigo-500/30 bg-indigo-950/30 hover:bg-indigo-900/30 hover:border-indigo-400/50'
+                          : 'border-indigo-500/30 bg-indigo-950/30 hover:bg-indigo-900/30 hover:border-[#FD673A]/50'
                       } transition-all duration-300`}
                   >
                     <input
@@ -399,8 +410,8 @@ const ResumeDropForm = () => {
                       </div>
                     ) : (
                       <>
-                        <div className="w-14 h-14 rounded-full bg-indigo-600/20 flex items-center justify-center mb-4">
-                          <Upload size={24} className="text-indigo-400" />
+                        <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#FD673A]/20 to-indigo-600/20 flex items-center justify-center mb-4">
+                          <Upload size={24} className="text-[#FD673A]" />
                         </div>
                         <p className="text-indigo-200 text-sm font-medium mb-1">
                           Drag your resume here or click to browse
@@ -425,24 +436,30 @@ const ResumeDropForm = () => {
                   <button
                     type="submit"
                     disabled={submissionState === 'submitting' || submissionState === 'success'}
-                    className={`w-full py-4 rounded-lg font-medium flex items-center justify-center transition-all duration-300 
+                    className={`group relative w-full py-4 rounded-lg font-medium flex items-center justify-center transition-all duration-300
                       ${submissionState === 'error' 
                         ? 'bg-red-600 hover:bg-red-700 text-white' 
                         : submissionState === 'success'
                           ? 'bg-green-600 text-white cursor-default'
-                          : 'bg-indigo-600 hover:bg-indigo-700 text-white'
-                      } shadow-lg ${submissionState !== 'error' ? 'shadow-indigo-600/20' : 'shadow-red-600/20'}`}
+                          : 'text-white'
+                      }`}
                   >
                     {submissionState === 'idle' && (
                       <>
-                        <Send size={18} className="mr-2" />
-                        Submit Application
+                        <div className="absolute -inset-0.5 bg-gradient-to-r from-[#FD673A] to-blue-500 rounded-lg blur opacity-30 group-hover:opacity-60 transition duration-300"></div>
+                        <div className="relative bg-[#0A0F2C] rounded-lg px-6 py-3 flex items-center justify-center w-full">
+                          <Send size={18} className="mr-2" />
+                          <span>Submit Application</span>
+                        </div>
                       </>
                     )}
                     {submissionState === 'submitting' && (
                       <>
-                        <Loader2 size={18} className="mr-2 animate-spin" />
-                        Submitting...
+                        <div className="absolute -inset-0.5 bg-gradient-to-r from-[#FD673A] to-blue-500 rounded-lg blur opacity-30 group-hover:opacity-60 transition duration-300"></div>
+                        <div className="relative bg-[#0A0F2C] rounded-lg px-6 py-3 flex items-center justify-center w-full">
+                          <Loader2 size={18} className="mr-2 animate-spin" />
+                          <span>Submitting...</span>
+                        </div>
                       </>
                     )}
                     {submissionState === 'success' && (
@@ -462,98 +479,39 @@ const ResumeDropForm = () => {
               </motion.form>
             </motion.div>
             
-            {/* Right Column - Image and Details */}
+            {/* Right Column - Image */}
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
               transition={{ duration: 0.6, delay: 0.3 }}
+              className="relative"
             >
-              <div className="relative">
-                <div className="relative h-[400px] md:h-[500px] rounded-2xl overflow-hidden shadow-xl shadow-indigo-950/20">
-                  <Image
-                    src="/careers/team-colab-2.jpg"
-                    alt="Team collaborating"
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0A0F2C]/90 via-[#0A0F2C]/50 to-transparent"></div>
-                </div>
+              <div className="relative h-[600px] w-full rounded-2xl overflow-hidden shadow-xl shadow-indigo-950/20">
+                <Image
+                  src="/careers/team-colab.jpg"
+                  alt="Join our team"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0A0F2C]/80 via-[#0A0F2C]/30 to-transparent mix-blend-overlay"></div>
                 
-                {/* Info cards */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                  transition={{ duration: 0.6, delay: 0.5 }}
-                  className="absolute bottom-8 left-0 right-0 mx-8"
-                >
-                  <div className="bg-indigo-950/80 backdrop-blur-sm border border-indigo-500/20 
-                    rounded-xl p-6 shadow-lg shadow-indigo-950/40"
-                  >
-                    <h3 className="text-xl font-bold text-white mb-4">
-                      Application Process
-                    </h3>
-                    
-                    <div className="space-y-4">
-                      <div className="flex">
-                        <div className="w-8 h-8 rounded-full bg-indigo-600/30 border border-indigo-500/30 
-                          flex items-center justify-center text-indigo-400 mr-3 flex-shrink-0"
-                        >
-                          <span>1</span>
-                        </div>
-                        <div>
-                          <h4 className="text-white font-medium">Submit Your Application</h4>
-                          <p className="text-blue-100/70 text-sm">
-                            Fill out the form and upload your resume.
-                          </p>
-                        </div>
-                      </div>
-                      
-                      <div className="flex">
-                        <div className="w-8 h-8 rounded-full bg-indigo-600/30 border border-indigo-500/30 
-                          flex items-center justify-center text-indigo-400 mr-3 flex-shrink-0"
-                        >
-                          <span>2</span>
-                        </div>
-                        <div>
-                          <h4 className="text-white font-medium">Initial Review</h4>
-                          <p className="text-blue-100/70 text-sm">
-                            Our recruitment team will review your application within 1-2 weeks.
-                          </p>
-                        </div>
-                      </div>
-                      
-                      <div className="flex">
-                        <div className="w-8 h-8 rounded-full bg-indigo-600/30 border border-indigo-500/30 
-                          flex items-center justify-center text-indigo-400 mr-3 flex-shrink-0"
-                        >
-                          <span>3</span>
-                        </div>
-                        <div>
-                          <h4 className="text-white font-medium">Interview Process</h4>
-                          <p className="text-blue-100/70 text-sm">
-                            Selected candidates will be invited for interviews.
-                          </p>
-                        </div>
-                      </div>
-                      
-                      <div className="flex">
-                        <div className="w-8 h-8 rounded-full bg-indigo-600/30 border border-indigo-500/30 
-                          flex items-center justify-center text-indigo-400 mr-3 flex-shrink-0"
-                        >
-                          <span>4</span>
-                        </div>
-                        <div>
-                          <h4 className="text-white font-medium">Welcome Aboard!</h4>
-                          <p className="text-blue-100/70 text-sm">
-                            Successful candidates will receive an offer and onboarding details.
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
+                {/* Animated Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-tr from-[#FD673A]/10 via-transparent to-blue-500/10 opacity-60"></div>
+                
+                {/* Enhanced image frame */}
+                <div className="absolute inset-0 border-2 border-[#FD673A]/20 rounded-2xl"></div>
+                
+                {/* Corners decoration */}
+                <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-[#FD673A]/40 rounded-tl-2xl"></div>
+                <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-[#FD673A]/40 rounded-tr-2xl"></div>
+                <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-[#FD673A]/40 rounded-bl-2xl"></div>
+                <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-[#FD673A]/40 rounded-br-2xl"></div>
               </div>
+              
+              {/* Decoration elements */}
+              <div className="absolute -top-6 -right-6 w-24 h-24 bg-[#FD673A]/20 rounded-lg blur-xl"></div>
+              <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-blue-600/20 rounded-lg blur-xl"></div>
             </motion.div>
           </div>
         </div>

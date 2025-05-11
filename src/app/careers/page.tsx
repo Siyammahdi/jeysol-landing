@@ -3,7 +3,6 @@
 import React from 'react';
 import CareersHero from '@/components/sections/careers/CareersHero';
 import CultureSection from '@/components/sections/careers/CultureSection';
-import OpenPositions from '@/components/sections/careers/OpenPositions';
 import ResumeDropForm from '@/components/sections/careers/ResumeDropForm';
 import WhyWorkWithUs from '@/components/sections/careers/WhyWorkWithUs';
 import Navbar from '@/components/ui/Navbar';
@@ -14,7 +13,7 @@ export default function CareersPage() {
       <Navbar />
       <CareersHero />
       <CultureSection />
-      <OpenPositions />
+      {/* <OpenPositions /> */}
       <WhyWorkWithUs />
       <ResumeDropForm />
     </main>

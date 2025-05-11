@@ -43,7 +43,7 @@ const AboutCTA: React.FC = () => {
         >
           <defs>
             <radialGradient id="cta-gradient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
-              <stop offset="0%" stopColor="#4F46E5" stopOpacity="0.2" />
+              <stop offset="0%" stopColor="#3B82F6" stopOpacity="0.2" />
               <stop offset="100%" stopColor="#0F172A" stopOpacity="0" />
             </radialGradient>
           </defs>
@@ -70,7 +70,7 @@ const AboutCTA: React.FC = () => {
         
         {/* Decorative lines - bottom right */}
         <svg 
-          className="absolute bottom-0 right-0 w-64 h-64 opacity-10 text-indigo-400"
+          className="absolute bottom-0 right-0 w-64 h-64 opacity-10 text-[#FD673A]"
           viewBox="0 0 100 100"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -95,7 +95,7 @@ const AboutCTA: React.FC = () => {
           animate={isInView ? "visible" : "hidden"}
         >
           <motion.div variants={itemVariants} className="mb-6">
-            <span className="inline-block px-4 py-1.5 text-xs font-medium tracking-wider text-blue-300 uppercase bg-gradient-to-r from-blue-500/20 to-indigo-500/10 backdrop-blur-sm rounded-full border border-blue-500/30 shadow-lg shadow-blue-500/5">
+            <span className="inline-block px-4 py-1.5 text-xs font-medium tracking-wider text-blue-300 uppercase bg-gradient-to-r from-blue-500/20 to-[#FD673A]/10 backdrop-blur-sm rounded-full border border-blue-500/30 shadow-lg shadow-blue-500/5">
               Ready to collaborate?
             </span>
           </motion.div>
@@ -105,7 +105,7 @@ const AboutCTA: React.FC = () => {
             className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight"
           >
             Let&apos;s build something<br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-[#FD673A] to-blue-400">
               extraordinary together
             </span>
           </motion.h2>
@@ -124,7 +124,7 @@ const AboutCTA: React.FC = () => {
           >
             <Link 
               href="/contact" 
-              className="px-8 py-3 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-medium text-base hover:from-blue-700 hover:to-indigo-700 shadow-lg shadow-blue-700/20 transition-all duration-300 hover:shadow-xl hover:shadow-blue-700/30 hover:-translate-y-1"
+              className="px-8 py-3 rounded-full bg-gradient-to-r from-blue-600 to-[#FD673A] text-white font-medium text-base hover:from-blue-700 hover:to-[#E55B2D] shadow-lg shadow-blue-700/20 transition-all duration-300 hover:shadow-xl hover:shadow-[#FD673A]/30 hover:-translate-y-1"
             >
               Start A Conversation
             </Link>
@@ -143,7 +143,7 @@ const AboutCTA: React.FC = () => {
             className="mt-12 text-blue-200/50 flex flex-col sm:flex-row items-center justify-center gap-6"
           >
             <div className="flex items-center gap-1.5">
-              <div className="w-2 h-2 rounded-full bg-green-400"></div>
+              <div className="w-2 h-2 rounded-full bg-[#FD673A]"></div>
               <span>Available for new projects</span>
             </div>
             
@@ -153,7 +153,7 @@ const AboutCTA: React.FC = () => {
             </div>
             
             <div className="flex items-center gap-1.5">
-              <div className="w-2 h-2 rounded-full bg-purple-400"></div>
+              <div className="w-2 h-2 rounded-full bg-[#FD673A]"></div>
               <span>7+ years experience</span>
             </div>
           </motion.div>

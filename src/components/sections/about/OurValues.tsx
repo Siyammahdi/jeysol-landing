@@ -51,8 +51,8 @@ const OurValues: React.FC = () => {
         
         {/* Animated gradient orbs */}
         <div className="absolute top-1/4 left-1/4 w-[40rem] h-[40rem] rounded-full bg-gradient-radial from-blue-500/5 via-blue-400/2 to-transparent blur-3xl opacity-60 animate-blob"></div>
-        <div className="absolute top-3/4 right-1/4 w-[35rem] h-[35rem] rounded-full bg-gradient-radial from-purple-500/5 via-purple-400/2 to-transparent blur-3xl opacity-50 animate-blob animation-delay-2000"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-[25rem] h-[25rem] rounded-full bg-gradient-radial from-teal-500/5 via-teal-400/2 to-transparent blur-3xl opacity-40 animate-blob animation-delay-4000"></div>
+        <div className="absolute top-3/4 right-1/4 w-[35rem] h-[35rem] rounded-full bg-gradient-radial from-[#FD673A]/5 via-[#FD673A]/2 to-transparent blur-3xl opacity-50 animate-blob animation-delay-2000"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-[25rem] h-[25rem] rounded-full bg-gradient-radial from-blue-500/5 via-blue-400/2 to-transparent blur-3xl opacity-40 animate-blob animation-delay-4000"></div>
       </div>
       
       {/* Content Container */}
@@ -67,13 +67,13 @@ const OurValues: React.FC = () => {
               transition: "opacity 0.6s ease-out, transform 0.8s ease-out"
             }}
           >
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-indigo-400 to-teal-400">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-[#FD673A] to-blue-400">
               Our Values
             </span>
           </motion.h2>
           
           <motion.div 
-            className="w-20 h-1 bg-gradient-to-r from-blue-500 via-indigo-500 to-teal-500 mx-auto rounded-full mb-6"
+            className="w-20 h-1 bg-gradient-to-r from-blue-500 via-[#FD673A] to-blue-500 mx-auto rounded-full mb-6"
             initial={{ width: 0, opacity: 0 }}
             animate={isHeadingInView ? { width: 80, opacity: 1 } : { width: 0, opacity: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -168,7 +168,7 @@ const ValueCard: React.FC<ValueCardProps> = ({ title, description, iconName, ind
   return (
     <motion.div
       variants={cardVariants}
-      className="backdrop-blur-sm bg-gradient-to-br from-blue-900/20 to-indigo-900/10 border border-blue-500/10 hover:border-blue-500/30 transition-all duration-300 rounded-xl p-6 md:p-8 h-full group"
+      className="backdrop-blur-sm bg-gradient-to-br from-blue-900/20 to-[#FD673A]/10 border border-blue-500/10 hover:border-blue-500/30 transition-all duration-300 rounded-xl p-6 md:p-8 h-full group"
       whileHover={{ 
         y: -10,
         boxShadow: "0 20px 80px -20px rgba(66, 71, 112, 0.25)",
@@ -180,14 +180,14 @@ const ValueCard: React.FC<ValueCardProps> = ({ title, description, iconName, ind
         variants={iconVariants}
         className="mb-6 relative"
       >
-        <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-blue-500/20 to-indigo-500/10 flex items-center justify-center text-blue-300 group-hover:text-blue-200 transition-colors duration-300">
+        <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-blue-500/20 to-[#FD673A]/10 flex items-center justify-center text-[#FD673A] group-hover:text-[#FD673A] transition-colors duration-300">
           <div className="w-8 h-8">
             <Icon size={24} />
           </div>
         </div>
         
         {/* Animated glow on hover */}
-        <div className="absolute inset-0 rounded-xl bg-blue-400/0 group-hover:bg-blue-400/20 blur-xl transition-all duration-500 opacity-0 group-hover:opacity-70"></div>
+        <div className="absolute inset-0 rounded-xl bg-[#FD673A]/0 group-hover:bg-[#FD673A]/20 blur-xl transition-all duration-500 opacity-0 group-hover:opacity-70"></div>
       </motion.div>
       
       {/* Title */}
@@ -198,7 +198,7 @@ const ValueCard: React.FC<ValueCardProps> = ({ title, description, iconName, ind
       {/* Underline animation */}
       <motion.div
         variants={lineVariants}
-        className="h-px bg-gradient-to-r from-blue-500 to-indigo-500 w-0 mb-4"
+        className="h-px bg-gradient-to-r from-blue-500 to-[#FD673A] w-0 mb-4"
       />
       
       {/* Description */}

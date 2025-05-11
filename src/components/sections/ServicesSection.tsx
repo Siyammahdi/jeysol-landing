@@ -22,9 +22,11 @@ const ServicesSection: React.FC = () => {
   const [stars, setStars] = useState<Star[]>([]);
   const [hoveredCardIndex, setHoveredCardIndex] = useState<number | null>(null);
   const lastMouseMoveRef = useRef<number>(0);
+  const [isClient, setIsClient] = useState(false);
   
   // Move star generation to useEffect for client-side only
   useEffect(() => {
+    setIsClient(true);
     // Reduce the number of stars for better performance (50 instead of 100)
     const generatedStars = Array.from({ length: 50 }).map((_, i) => ({
       id: i,
@@ -40,6 +42,8 @@ const ServicesSection: React.FC = () => {
   
   // Handle mouse move for interactive parallax effect with manual throttling (every 16ms ~ 60fps)
   const handleMouseMove = useCallback((e: React.MouseEvent) => {
+    if (!isClient) return;
+    
     const now = Date.now();
     // Throttle to 60fps (16ms)
     if (now - lastMouseMoveRef.current < 16) {
@@ -57,7 +61,7 @@ const ServicesSection: React.FC = () => {
       mouseX.set(x / rect.width - 0.5);  // Normalize to -0.5 to 0.5
       mouseY.set(y / rect.height - 0.5); // Normalize to -0.5 to 0.5
     }
-  }, [mouseX, mouseY]);
+  }, [mouseX, mouseY, isClient]);
   
   // Smooth spring effects for mouse movement - reduce stiffness for smoother animation
   const springConfig = { damping: 30, stiffness: 150 };
@@ -109,37 +113,39 @@ const ServicesSection: React.FC = () => {
       className="relative py-32 lg:py-48 overflow-hidden bg-[#0A0F2C] tech-grid-bg"
     >
       {/* Deep background layer - Starfield - Optimize by rendering fewer stars */}
-      <div className="absolute inset-0 z-0">
-        <motion.div
-          style={{ y: bgY }}
-          className="absolute inset-0 w-full h-full"
-        >
-          {stars.map((star) => (
-            <motion.div
-              key={star.id}
-              className="absolute rounded-full bg-white"
-              style={{
-                width: star.size,
-                height: star.size,
-                left: `${star.x}%`,
-                top: `${star.y}%`,
-                opacity: star.opacity,
-                willChange: 'opacity, transform',
-              }}
-              animate={{
-                opacity: [star.opacity, star.opacity * 0.3, star.opacity],
-                scale: [1, 1.2, 1],
-              }}
-              transition={{
-                duration: star.duration,
-                repeat: Infinity,
-                delay: star.delay,
-                ease: "linear", // Change to linear for more efficiency
-              }}
-            />
-          ))}
-        </motion.div>
-      </div>
+      {isClient && (
+        <div className="absolute inset-0 z-0">
+          <motion.div
+            style={{ y: bgY }}
+            className="absolute inset-0 w-full h-full"
+          >
+            {stars.map((star) => (
+              <motion.div
+                key={star.id}
+                className="absolute rounded-full bg-white"
+                style={{
+                  width: star.size,
+                  height: star.size,
+                  left: `${star.x}%`,
+                  top: `${star.y}%`,
+                  opacity: star.opacity,
+                  willChange: 'opacity, transform',
+                }}
+                animate={{
+                  opacity: [star.opacity, star.opacity * 0.3, star.opacity],
+                  scale: [1, 1.2, 1],
+                }}
+                transition={{
+                  duration: star.duration,
+                  repeat: Infinity,
+                  delay: star.delay,
+                  ease: "linear", // Change to linear for more efficiency
+                }}
+              />
+            ))}
+          </motion.div>
+        </div>
+      )}
 
       {/* Mid layer - Gradient blobs and tech patterns */}
       <div className="absolute inset-0 z-[1] overflow-hidden">
@@ -155,7 +161,7 @@ const ServicesSection: React.FC = () => {
           }}
           className="absolute top-[5%] right-[10%] w-[50%] h-[50%] opacity-20"
         >
-          <div className="w-full h-full bg-gradient-radial from-blue-500/30 via-indigo-500/20 to-transparent rounded-full blur-3xl"></div>
+          <div className="w-full h-full bg-gradient-radial from-[#FD673A]/30 via-blue-500/20 to-transparent rounded-full blur-3xl"></div>
         </motion.div>
         
         {/* Gradient blob 2 - Simplify animation */}
@@ -220,13 +226,13 @@ const ServicesSection: React.FC = () => {
             <defs>
               <linearGradient id="line-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
                 <stop offset="0%" stopColor="#3B82F6" stopOpacity="0.8" />
-                <stop offset="50%" stopColor="#8B5CF6" stopOpacity="0.8" />
-                <stop offset="100%" stopColor="#14B8A6" stopOpacity="0.8" />
+                <stop offset="50%" stopColor="#FD673A" stopOpacity="0.8" />
+                <stop offset="100%" stopColor="#4F46E5" stopOpacity="0.8" />
               </linearGradient>
               
               <linearGradient id="line-gradient-v" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stopColor="#14B8A6" stopOpacity="0.8" />
-                <stop offset="50%" stopColor="#8B5CF6" stopOpacity="0.8" />
+                <stop offset="0%" stopColor="#4F46E5" stopOpacity="0.8" />
+                <stop offset="50%" stopColor="#FD673A" stopOpacity="0.8" />
                 <stop offset="100%" stopColor="#3B82F6" stopOpacity="0.8" />
               </linearGradient>
             </defs>
@@ -263,7 +269,7 @@ const ServicesSection: React.FC = () => {
               
               {/* Connected nodes - Reduced number */}
               <motion.circle cx="25%" cy="35%" r="6" fill="#3B82F6" initial={{ opacity: 0.5 }} animate={{ opacity: [0.5, 1, 0.5] }} transition={{ duration: 3, repeat: Infinity, ease: "linear" }} />
-              <motion.circle cx="75%" cy="60%" r="6" fill="#14B8A6" initial={{ opacity: 0.5 }} animate={{ opacity: [0.5, 1, 0.5] }} transition={{ duration: 3.5, repeat: Infinity, delay: 1.5, ease: "linear" }} />
+              <motion.circle cx="75%" cy="60%" r="6" fill="#FD673A" initial={{ opacity: 0.5 }} animate={{ opacity: [0.5, 1, 0.5] }} transition={{ duration: 3.5, repeat: Infinity, delay: 1.5, ease: "linear" }} />
             </g>
           </svg>
         </motion.div>
@@ -283,29 +289,22 @@ const ServicesSection: React.FC = () => {
           <motion.h2
             className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 tracking-tight"
           >
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-indigo-400 to-teal-400">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-[#FD673A] to-indigo-400">
               Our Services
             </span>
           </motion.h2>
           
           <motion.div 
-            className="w-24 h-1.5 bg-gradient-to-r from-blue-500 via-indigo-500 to-teal-500 mx-auto rounded-full mb-6"
-            initial={{ width: 0, opacity: 0 }}
-            whileInView={{ width: 96, opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            className="w-24 h-1 bg-gradient-to-r from-blue-500 via-[#FD673A] to-indigo-500 mx-auto rounded-full mb-8"
+            initial={{ width: 0 }}
+            whileInView={{ width: 96 }}
+            transition={{ duration: 1, ease: "easeOut" }}
             viewport={{ once: true }}
           />
           
-          <motion.p
-            className="text-xl text-blue-100/70 max-w-3xl mx-auto font-light"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            viewport={{ once: true }}
-          >
-            We deliver cutting-edge solutions that transform businesses
-            <br className="hidden md:block" /> and create exceptional digital experiences.
-          </motion.p>
+          <p className="text-blue-100/70 text-lg md:text-xl max-w-3xl mx-auto">
+            We create innovative, scalable software solutions tailored to your unique business needs.
+          </p>
         </motion.div>
         
         {/* Services grid - Using memoized variants */}

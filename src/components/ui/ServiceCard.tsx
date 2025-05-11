@@ -2,6 +2,7 @@
 
 import React, { useRef, useCallback, memo } from 'react';
 import { motion, useMotionValue, useSpring } from 'framer-motion';
+import Link from 'next/link';
 
 interface ServiceCardProps {
   icon: React.ReactNode;
@@ -25,6 +26,20 @@ const ServiceCard: React.FC<ServiceCardProps> = memo(({
   const cardRef = useRef<HTMLDivElement>(null);
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
+
+  // Get service path based on title or index
+  const getServicePath = () => {
+    const paths = [
+      "/services/web-development",
+      "/services/mobile-development",
+      "/services/software-development",
+      "/services/ui-ux-design",
+      "/services/graphics-design",
+      "/services/printing-solutions"
+    ];
+    
+    return paths[index] || "#";
+  };
 
   // Subtle card tilt effect on mouse move - with useCallback for better performance
   const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
@@ -132,7 +147,7 @@ const ServiceCard: React.FC<ServiceCardProps> = memo(({
         group relative overflow-hidden rounded-xl 
         transition-all duration-300
         ${isActive ? 
-          'shadow-[0_20px_50px_rgba(59,130,246,0.25)]' : 
+          'shadow-[0_20px_50px_rgba(253,103,58,0.25)]' : 
           'shadow-lg'
         }
       `}
@@ -144,7 +159,7 @@ const ServiceCard: React.FC<ServiceCardProps> = memo(({
           absolute inset-0 -z-10 transition-all duration-500
           backdrop-blur-md border
           ${isActive ? 
-            'bg-gradient-to-br from-blue-900/60 via-blue-800/40 to-indigo-900/60 border-blue-400/30' : 
+            'bg-gradient-to-br from-blue-900/60 via-[#FD673A]/20 to-indigo-900/60 border-[#FD673A]/30' : 
             'bg-gradient-to-br from-blue-900/30 via-blue-800/20 to-indigo-900/30 border-blue-500/10'
           }
         `}
@@ -153,7 +168,7 @@ const ServiceCard: React.FC<ServiceCardProps> = memo(({
       {/* Inner glow effect */}
       <div 
         className={`
-          absolute inset-[1px] -z-5 rounded-xl bg-gradient-to-b from-blue-500/10 to-transparent opacity-0
+          absolute inset-[1px] -z-5 rounded-xl bg-gradient-to-b from-[#FD673A]/10 to-transparent opacity-0
           transition-opacity duration-500 ease-out
           ${isActive ? 'opacity-100' : 'group-hover:opacity-50'}
         `}
@@ -163,7 +178,7 @@ const ServiceCard: React.FC<ServiceCardProps> = memo(({
       {isActive && (
         <div className="absolute inset-0 overflow-hidden -z-5 rounded-xl">
           <div className="absolute -top-[20%] -right-[20%] w-[60%] h-[60%] rounded-full 
-            bg-gradient-radial from-blue-400/10 via-transparent to-transparent 
+            bg-gradient-radial from-[#FD673A]/10 via-transparent to-transparent 
             blur-xl opacity-100 scale-110"
           />
           <div className="absolute -bottom-[20%] -left-[20%] w-[60%] h-[60%] rounded-full 
@@ -183,8 +198,8 @@ const ServiceCard: React.FC<ServiceCardProps> = memo(({
           <svg width="100%" height="100%" className="absolute inset-0">
             <linearGradient id={`line-gradient-${index}`} x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" stopColor="#3B82F6" stopOpacity="1" />
-              <stop offset="50%" stopColor="#8B5CF6" stopOpacity="1" />
-              <stop offset="100%" stopColor="#14B8A6" stopOpacity="1" />
+              <stop offset="50%" stopColor="#FD673A" stopOpacity="1" />
+              <stop offset="100%" stopColor="#4F46E5" stopOpacity="1" />
             </linearGradient>
             <motion.rect 
               x="0" 
@@ -198,104 +213,86 @@ const ServiceCard: React.FC<ServiceCardProps> = memo(({
               rx="12"
               initial={{ pathLength: 0, opacity: 0 }}
               animate={{ pathLength: 1, opacity: 1 }}
-              transition={{ duration: 1.5, ease: "easeInOut" }}
+              transition={{ duration: 1, ease: "easeInOut" }}
             />
           </svg>
         </motion.div>
       )}
       
       {/* Card content */}
-      <div className="relative z-20 p-6 md:p-8 h-full flex flex-col">
-        {/* Card icon */}
+      <div className="relative z-20 p-6 md:p-8">
+        {/* Icon area */}
         <motion.div 
+          className={`
+            w-16 h-16 mb-6 rounded-lg flex items-center justify-center 
+            ${isActive ? 
+              'text-white bg-gradient-to-br from-[#FD673A]/90 to-blue-600/90' : 
+              'text-blue-300 bg-gradient-to-br from-blue-900/60 to-indigo-900/60'
+            }
+            transition-all duration-300
+          `}
           variants={iconVariants}
           initial="initial"
           animate={isActive ? "hover" : "initial"}
-          className="mb-5 text-blue-400 self-start"
-          style={{ willChange: isActive ? 'transform' : 'auto' }}
         >
-          <div className="w-12 h-12 flex items-center justify-center">
+          <div className="w-8 h-8">
             {icon}
           </div>
         </motion.div>
         
-        {/* Card title */}
+        {/* Title with hover effect */}
         <motion.h3 
+          className={`
+            text-xl md:text-2xl font-semibold mb-2
+            ${isActive ? 'text-[#FD673A]' : 'text-white group-hover:text-[#FD673A]'}
+            transition-colors duration-300
+          `}
           variants={titleVariants}
           initial="initial"
           animate={isActive ? "hover" : "initial"}
-          className="text-xl font-medium text-white mb-3"
-          style={{ willChange: isActive ? 'transform' : 'auto' }}
         >
           {title}
         </motion.h3>
         
-        {/* Glowing divider line */}
-        <motion.div
+        {/* Animated separator line */}
+        <motion.div 
+          className="h-0.5 bg-gradient-to-r from-blue-500 via-[#FD673A] to-blue-500 mb-4"
           variants={lineVariants}
           initial="hidden"
           animate={isActive ? "visible" : "hidden"}
-          className="h-0.5 bg-gradient-to-r from-blue-500 via-violet-500 to-teal-500 mb-4 rounded-full relative"
-          style={{ willChange: isActive ? 'width, left' : 'auto' }}
         />
         
-        {/* Expanded content on hover */}
-        <motion.div
+        {/* Description with fade-in effect */}
+        <motion.p 
+          className="text-blue-100/70 leading-relaxed"
           variants={descriptionVariants}
-          initial="hidden"
+          initial={isActive ? "visible" : "hidden"}
           animate={isActive ? "visible" : "hidden"}
-          className="text-blue-100/80 text-sm overflow-hidden"
-          style={{ willChange: isActive ? 'opacity, height' : 'auto' }}
         >
-          <p>{description}</p>
-        </motion.div>
+          {description}
+        </motion.p>
         
-        {/* Learn more button */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ 
-            opacity: isActive ? 1 : 0, 
-            y: isActive ? 0 : 10,
-            transition: { delay: 0.2 }
-          }}
-          className="mt-auto pt-4 flex justify-end"
-          style={{ willChange: isActive ? 'opacity, transform' : 'auto' }}
-        >
-          <div className="text-blue-300 text-sm font-medium flex items-center cursor-pointer group/btn">
-            <span>Learn more</span>
-            <svg 
-              xmlns="http://www.w3.org/2000/svg" 
-              width="18" 
-              height="18" 
-              viewBox="0 0 24 24" 
-              fill="none" 
-              stroke="currentColor" 
-              strokeWidth="2" 
-              strokeLinecap="round" 
-              strokeLinejoin="round"
-              className="ml-1 transform group-hover/btn:translate-x-1 transition-transform duration-200"
+        {/* Learn more link */}
+        {isActive && (
+          <Link href={getServicePath()}>
+            <motion.div 
+              className="mt-6 flex items-center text-[#FD673A] font-medium cursor-pointer"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
             >
-              <line x1="5" y1="12" x2="19" y2="12"></line>
-              <polyline points="12 5 19 12 12 19"></polyline>
-            </svg>
-          </div>
-        </motion.div>
+              <span>Learn more</span>
+              <svg className="ml-1 w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </motion.div>
+          </Link>
+        )}
       </div>
-      
-      {/* Shimmering highlight - conditionally rendered only when needed */}
-      {isActive && (
-        <motion.div 
-          className="absolute inset-0 bg-gradient-to-tr from-white/5 to-transparent opacity-100 transition-opacity duration-500 pointer-events-none"
-          style={{
-            clipPath: "polygon(0 0, 100% 0, 100% 20%, 0 50%)"
-          }}
-        />
-      )}
     </motion.div>
   );
 });
 
-// Add display name for debugging
-ServiceCard.displayName = "ServiceCard";
+ServiceCard.displayName = 'ServiceCard';
 
 export default ServiceCard; 

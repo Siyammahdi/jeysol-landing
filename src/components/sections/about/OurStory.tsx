@@ -27,7 +27,7 @@ const OurStory: React.FC = () => {
       <div className="absolute inset-0 overflow-hidden">
         {/* Subtle blurred circles */}
         <div className="absolute top-1/3 -right-24 w-96 h-96 bg-blue-500/10 rounded-full filter blur-[80px] opacity-70"></div>
-        <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-indigo-500/10 rounded-full filter blur-[100px] opacity-60"></div>
+        <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-[#FD673A]/10 rounded-full filter blur-[100px] opacity-60"></div>
       </div>
       
       <div className="container mx-auto px-4 md:px-6 relative z-10">
@@ -41,7 +41,7 @@ const OurStory: React.FC = () => {
               transition={{ duration: 0.6 }}
               className="inline-block mb-6"
             >
-              <span className="px-4 py-1.5 text-xs font-medium tracking-wider text-blue-300 uppercase bg-gradient-to-r from-blue-500/20 to-indigo-500/10 backdrop-blur-sm rounded-full border border-blue-500/30 shadow-lg shadow-blue-500/5">
+              <span className="px-4 py-1.5 text-xs font-medium tracking-wider text-blue-300 uppercase bg-gradient-to-r from-blue-500/20 to-[#FD673A]/10 backdrop-blur-sm rounded-full border border-blue-500/30 shadow-lg shadow-blue-500/5">
                 Our Story
               </span>
             </motion.div>
@@ -64,7 +64,7 @@ const OurStory: React.FC = () => {
               className="space-y-4 text-lg text-blue-100/70"
             >
               <p>
-                JeySol began in 2016 as a small team of passionate designers and developers working out of a shared office space. Our founders, Alex Johnson and Maya Rodriguez, believed there was a better way to create digital experiences that truly served people&apos;s needs.
+                JeySol began in 2016 as a small team of passionate designers and developers working out of a shared office space. Our founders, Jashim Ahmed and Maya Rodriguez, believed there was a better way to create digital experiences that truly served people&apos;s needs.
               </p>
               <p>
                 What started as a boutique web design agency quickly evolved into a full-service digital solutions provider as we expanded our expertise and client base. By 2019, we had established an international presence with clients spanning three continents.
@@ -79,11 +79,11 @@ const OurStory: React.FC = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="mt-8 pl-4 border-l-2 border-blue-500 italic text-blue-100"
+              className="mt-8 pl-4 border-l-2 border-[#FD673A] italic text-blue-100"
             >
               &quot;We founded JeySol with the belief that technology should amplify human potential, not replace it. That principle still guides everything we do today.&quot;
               <footer className="mt-2 text-blue-300/70 not-italic text-sm">
-                — Alex Johnson, Founder & CEO
+                — Jashim Ahmed, Founder & CEO
               </footer>
             </motion.blockquote>
           </div>
@@ -109,14 +109,14 @@ const OurStory: React.FC = () => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
               </div>
-              <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
+              {/* <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
                 <p className="text-sm font-medium">Team Growth: 2016 vs 2023</p>
-              </div>
+              </div> */}
             </motion.div>
             
             {/* Floating Element 1 - Key Stats Card */}
             <motion.div
-              className="absolute top-10 -right-10 z-20 bg-gradient-to-br from-blue-900/80 to-indigo-900/80 backdrop-blur-md rounded-lg p-4 shadow-xl shadow-blue-900/20 border border-white/10 w-32 md:w-40"
+              className="absolute top-10 -right-10 z-20 bg-gradient-to-br from-blue-900/80 to-[#FD673A]/20 backdrop-blur-md rounded-lg p-4 shadow-xl shadow-blue-900/20 border border-white/10 w-32 md:w-40"
               initial={{ opacity: 0, x: 30 }}
               animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
               transition={{ duration: 0.6, delay: 0.3 }}
@@ -133,14 +133,14 @@ const OurStory: React.FC = () => {
             
             {/* Floating Element 2 - Year Label */}
             <motion.div
-              className="absolute -bottom-5 -left-5 z-20 bg-gradient-to-br from-indigo-600 to-blue-700 rounded-full h-16 w-16 flex items-center justify-center shadow-lg shadow-blue-600/20"
+              className="absolute -bottom-5 -left-5 z-20 bg-gradient-to-br from-blue-600 to-[#FD673A] rounded-full h-16 w-16 flex items-center justify-center shadow-lg shadow-[#FD673A]/20"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
               transition={{ duration: 0.6, delay: 0.4 }}
               style={{ y: y2 }}
             >
               <div className="text-center">
-                <span className="text-lg font-bold text-white">7+</span>
+                <span className="text-lg font-bold text-white">3+</span>
                 <p className="text-xs text-white/80">Years</p>
               </div>
             </motion.div>

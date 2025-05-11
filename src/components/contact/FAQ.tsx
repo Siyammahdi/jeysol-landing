@@ -2,119 +2,134 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown, Search } from 'lucide-react';
+import { FiSearch, FiPlus, FiMinus } from 'react-icons/fi';
 
 interface FAQItem {
+  id: number;
   question: string;
   answer: string;
   category: string;
 }
 
-const faqData: FAQItem[] = [
-  {
-    question: "How do I request a quote for my project?",
-    answer: "You can request a quote by filling out our contact form with details about your project requirements. Our team will review your request and get back to you within 24 hours with a detailed proposal and pricing estimate.",
-    category: "Pricing"
-  },
-  {
-    question: "What information should I include in my project brief?",
-    answer: "For the most accurate quote, include details about your project goals, target audience, desired features, timeline, and budget range. The more specific you can be, the better we can tailor our proposal to meet your needs.",
-    category: "Process"
-  },
-  {
-    question: "How long does a typical project take to complete?",
-    answer: "Project timelines vary depending on scope and complexity. A small website might take 2-4 weeks, while more complex applications can take 3-6 months. During our initial consultation, we'll provide a detailed timeline specific to your project needs.",
-    category: "Process"
-  },
-  {
-    question: "Do you offer ongoing maintenance and support?",
-    answer: "Yes, we offer various maintenance and support packages to keep your project running smoothly after launch. These include regular updates, security patches, performance optimization, and technical support for any issues that may arise.",
-    category: "Services"
-  },
-  {
-    question: "What technologies do you specialize in?",
-    answer: "Our team specializes in a wide range of modern technologies including React, Next.js, Node.js, Python, AWS, and more. We select the most appropriate tech stack for each project based on specific requirements and goals.",
-    category: "Technical"
-  },
-  {
-    question: "Can you work with our existing design team?",
-    answer: "Absolutely! We're happy to collaborate with your existing design team, developers, or other stakeholders. We can adapt our process to complement your team's workflow and ensure a smooth collaboration experience.",
-    category: "Process"
-  },
-  {
-    question: "What happens after the project is launched?",
-    answer: "After launch, we conduct a thorough handover including documentation and training if needed. We also offer a warranty period to address any issues that might arise. Many clients choose to continue with our maintenance packages for ongoing support.",
-    category: "Services"
-  },
-  {
-    question: "What payment methods do you accept?",
-    answer: "We accept various payment methods including bank transfers, credit cards, and PayPal. For larger projects, we typically work with a milestone-based payment schedule that aligns with project deliverables.",
-    category: "Pricing"
-  }
-];
-
 const FAQ: React.FC = () => {
-  const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
-  const [activeCategory, setActiveCategory] = useState<string | null>(null);
+  const [openItemId, setOpenItemId] = useState<number | null>(null);
+  const [activeCategory, setActiveCategory] = useState<string>('all');
   
-  const categories = Array.from(new Set(faqData.map(item => item.category)));
+  // Sample FAQ data
+  const faqItems: FAQItem[] = [
+    {
+      id: 1,
+      question: "What services do you offer?",
+      answer: "We provide a comprehensive range of digital services including web development, mobile app development, UI/UX design, digital marketing, and IT consulting. Our team specializes in creating custom solutions tailored to your specific business needs.",
+      category: "services"
+    },
+    {
+      id: 2,
+      question: "How long does it take to complete a project?",
+      answer: "Project timelines vary depending on complexity and scope. A simple website might take 2-4 weeks, while a complex web application or mobile app could take 2-6 months. During our initial consultation, we'll provide you with a detailed timeline based on your specific requirements.",
+      category: "process"
+    },
+    {
+      id: 3,
+      question: "What is your pricing structure?",
+      answer: "We offer flexible pricing models including fixed-price quotes, hourly rates, and retainer options. The cost depends on project complexity, features required, and timeline. We provide transparent quotes after understanding your project requirements during the consultation phase.",
+      category: "pricing"
+    },
+    {
+      id: 4,
+      question: "Do you provide ongoing support after project completion?",
+      answer: "Yes, we offer various maintenance and support packages to ensure your digital products remain up-to-date and function optimally. These include technical support, security updates, performance optimization, and feature enhancements based on your evolving needs.",
+      category: "support"
+    },
+    {
+      id: 5,
+      question: "How do you handle project communication?",
+      answer: "We maintain clear and consistent communication throughout the project lifecycle. Depending on your preference, we use tools like Slack, Microsoft Teams, or email for daily updates. We also schedule regular video calls and provide access to project management tools where you can track progress in real-time.",
+      category: "process"
+    },
+    {
+      id: 6,
+      question: "What technologies do you specialize in?",
+      answer: "Our team is proficient in a wide range of technologies including React, Next.js, Node.js, Python, Flutter, React Native, AWS, and more. We stay updated with the latest industry trends to ensure we're using the most efficient and effective technologies for your project.",
+      category: "technical"
+    },
+    {
+      id: 7,
+      question: "Can you help with an existing project or only new ones?",
+      answer: "We can definitely help with existing projects. Our team is experienced in code reviews, refactoring, performance optimization, and adding new features to existing applications. We'll assess your current codebase and provide recommendations for improvements.",
+      category: "services"
+    },
+    {
+      id: 8,
+      question: "What makes your company different from other agencies?",
+      answer: "We combine technical excellence with a deep understanding of business objectives. Our approach focuses on creating solutions that not only look great but also drive tangible results. We pride ourselves on transparency, attention to detail, and building long-term partnerships with our clients.",
+      category: "company"
+    }
+  ];
   
-  const filteredFAQs = faqData.filter(faq => {
-    const matchesSearch = searchQuery === '' || 
-      faq.question.toLowerCase().includes(searchQuery.toLowerCase()) || 
-      faq.answer.toLowerCase().includes(searchQuery.toLowerCase());
-    
-    const matchesCategory = activeCategory === null || faq.category === activeCategory;
-    
+  // Filter FAQ items based on search query and category
+  const filteredFAQs = faqItems.filter(item => {
+    const matchesSearch = item.question.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                          item.answer.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesCategory = activeCategory === 'all' || item.category === activeCategory;
     return matchesSearch && matchesCategory;
   });
   
-  const toggleAccordion = (index: number) => {
-    setActiveIndex(activeIndex === index ? null : index);
-  };
+  // Get unique categories
+  const categories = ['all', ...Array.from(new Set(faqItems.map(item => item.category)))];
   
+  // Toggle FAQ item
+  const toggleItem = (id: number) => {
+    setOpenItemId(openItemId === id ? null : id);
+  };
+
   return (
-    <section className="py-20 relative overflow-hidden bg-[#080D24]">
-      {/* Background Effects */}
+    <section className="relative py-20 overflow-hidden">
+      {/* Background elements */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-gradient-to-bl from-indigo-900/10 via-blue-900/5 to-transparent blur-3xl" />
-        <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-gradient-to-tr from-indigo-900/10 via-blue-900/5 to-transparent blur-3xl" />
+        {/* Radial gradient */}
+        <div className="absolute inset-0 bg-gradient-radial from-[#FD673A]/5 via-transparent to-transparent opacity-50 blur-3xl" />
+        
+        {/* Grid background */}
+        <div 
+          className="absolute inset-0 opacity-10" 
+          style={{ 
+            backgroundImage: 'linear-gradient(to right, rgba(253, 103, 58, 0.1) 1px, transparent 1px), linear-gradient(to bottom, rgba(99, 102, 241, 0.1) 1px, transparent 1px)',
+            backgroundSize: '40px 40px'
+          }}
+        />
       </div>
       
       <div className="container mx-auto px-4 md:px-6 relative z-10">
-        {/* Section header */}
+        {/* Section Title */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-          className="max-w-2xl mx-auto text-center mb-12"
+          transition={{ duration: 0.7 }}
+          viewport={{ once: true, amount: 0.3 }}
+          className="text-center mb-12"
         >
-          <div className="inline-block px-3 py-1 bg-blue-900/20 rounded-full mb-4">
-            <span className="text-sm font-medium text-blue-400">Your Questions Answered</span>
-          </div>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 tracking-tight text-white">Frequently Asked Questions</h2>
-          <p className="text-lg text-blue-100/70">
-            Find answers to common questions about our services, process, and more.
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-[#FD673A] to-blue-400">
+              Frequently Asked Questions
+            </span>
+          </h2>
+          <div className="w-24 h-1 bg-gradient-to-r from-blue-500 via-[#FD673A] to-blue-500 mx-auto rounded-full mb-6" />
+          <p className="text-lg text-blue-100/70 max-w-2xl mx-auto">
+            Find answers to common questions about our services and process
           </p>
         </motion.div>
         
-        {/* Search and filters */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          viewport={{ once: true }}
-          className="max-w-3xl mx-auto mb-8"
-        >
-          <div className="relative">
+        {/* Search and Filter */}
+        <div className="max-w-3xl mx-auto mb-10">
+          <div className="relative mb-6">
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <Search className="h-5 w-5 text-blue-500" />
+              <FiSearch className="h-5 w-5 text-[#FD673A]" />
             </div>
             <input
               type="text"
-              className="block w-full pl-10 pr-3 py-3 border border-blue-900/50 rounded-lg bg-blue-950/30 text-white placeholder-blue-400/70 focus:outline-none focus:ring-2 focus:ring-blue-500/50 backdrop-blur-sm"
+              className="block w-full pl-10 pr-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-blue-200/50 focus:outline-none focus:border-[#FD673A] transition-colors"
               placeholder="Search questions..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
@@ -122,113 +137,108 @@ const FAQ: React.FC = () => {
           </div>
           
           {/* Category filters */}
-          <div className="flex flex-wrap gap-2 mt-4 justify-center">
-            <button
-              onClick={() => setActiveCategory(null)}
-              className={`px-4 py-1.5 rounded-full text-sm ${
-                activeCategory === null
-                  ? 'bg-blue-600 text-white'
-                  : 'bg-blue-900/20 text-blue-300 hover:bg-blue-800/30'
-              } transition-colors duration-200`}
-            >
-              All
-            </button>
-            {categories.map((category, index) => (
+          <div className="flex flex-wrap gap-2 justify-center">
+            {categories.map(category => (
               <button
-                key={index}
+                key={category}
                 onClick={() => setActiveCategory(category)}
-                className={`px-4 py-1.5 rounded-full text-sm ${
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
                   activeCategory === category
-                    ? 'bg-blue-600 text-white'
-                    : 'bg-blue-900/20 text-blue-300 hover:bg-blue-800/30'
-                } transition-colors duration-200`}
+                    ? 'bg-[#FD673A] text-white'
+                    : 'bg-white/5 text-blue-100/70 hover:bg-white/10'
+                }`}
               >
-                {category}
+                {category.charAt(0).toUpperCase() + category.slice(1)}
               </button>
             ))}
           </div>
-        </motion.div>
+        </div>
         
-        {/* FAQ Accordion */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          viewport={{ once: true }}
-          className="max-w-3xl mx-auto"
-        >
-          <div className="space-y-4">
-            {filteredFAQs.length > 0 ? (
-              filteredFAQs.map((faq, index) => (
+        {/* FAQ Items */}
+        <div className="max-w-3xl mx-auto">
+          {filteredFAQs.length > 0 ? (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5 }}
+              className="space-y-4"
+            >
+              {filteredFAQs.map((item) => (
                 <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 10 }}
+                  key={item.id}
+                  initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="border border-blue-800/30 rounded-xl overflow-hidden backdrop-blur-sm"
+                  transition={{ duration: 0.5 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg overflow-hidden"
                 >
                   <button
-                    onClick={() => toggleAccordion(index)}
-                    className="w-full px-6 py-4 text-left flex justify-between items-center bg-blue-900/10 hover:bg-blue-900/20 transition-colors duration-200"
+                    onClick={() => toggleItem(item.id)}
+                    className="w-full text-left px-6 py-4 flex justify-between items-center"
                   >
-                    <span className="text-lg font-medium text-white">{faq.question}</span>
-                    <motion.div
-                      animate={{ rotate: activeIndex === index ? 180 : 0 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <ChevronDown className="h-5 w-5 text-blue-400" />
-                    </motion.div>
+                    <span className="font-medium text-white">{item.question}</span>
+                    <span className="text-[#FD673A] ml-4">
+                      {openItemId === item.id ? (
+                        <FiMinus className="h-5 w-5" />
+                      ) : (
+                        <FiPlus className="h-5 w-5" />
+                      )}
+                    </span>
                   </button>
                   
                   <AnimatePresence>
-                    {activeIndex === index && (
+                    {openItemId === item.id && (
                       <motion.div
                         initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: 'auto', opacity: 1 }}
+                        animate={{ height: "auto", opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
                         transition={{ duration: 0.3 }}
                         className="overflow-hidden"
                       >
-                        <div className="px-6 py-4 bg-blue-950/30">
-                          <p className="text-blue-100/80">{faq.answer}</p>
-                          <div className="mt-2 pt-2 border-t border-blue-800/20">
-                            <span className="text-xs text-blue-400/70 inline-block px-2 py-0.5 bg-blue-900/20 rounded-full">
-                              {faq.category}
-                            </span>
+                        <div className="px-6 pb-4 text-blue-100/80">
+                          <div className="pt-2 border-t border-white/10">
+                            {item.answer}
                           </div>
                         </div>
                       </motion.div>
                     )}
                   </AnimatePresence>
                 </motion.div>
-              ))
-            ) : (
-              <div className="text-center py-10">
-                <p className="text-blue-400">No results found. Try a different search term.</p>
-              </div>
-            )}
-          </div>
-          
-          {/* Still have questions */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            viewport={{ once: true }}
-            className="mt-12 text-center p-6 border border-blue-800/30 rounded-xl bg-blue-900/10 backdrop-blur-sm"
+              ))}
+            </motion.div>
+          ) : (
+            <div className="text-center py-10">
+              <p className="text-blue-100/70 text-lg">No matching questions found.</p>
+              <button
+                onClick={() => {
+                  setSearchQuery('');
+                  setActiveCategory('all');
+                }}
+                className="mt-4 px-6 py-2 bg-[#FD673A]/80 hover:bg-[#FD673A] rounded-full text-white transition-colors"
+              >
+                Reset Filters
+              </button>
+            </div>
+          )}
+        </div>
+        
+        {/* Contact prompt */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.2 }}
+          viewport={{ once: true, amount: 0.3 }}
+          className="mt-16 text-center"
+        >
+          <p className="text-lg text-blue-100/70 mb-6">
+            Can't find what you're looking for? Feel free to reach out directly.
+          </p>
+          <a
+            href="#contact-form"
+            className="inline-flex items-center px-6 py-3 rounded-full bg-gradient-to-r from-[#FD673A] to-blue-600 text-white font-medium hover:shadow-lg hover:shadow-[#FD673A]/20 transition-shadow"
           >
-            <h3 className="text-xl font-semibold text-white mb-2">Still have questions?</h3>
-            <p className="text-blue-100/70 mb-4">
-              Our team is ready to assist you with any specific queries about your project.
-            </p>
-            <a
-              href="#contact-form"
-              className="inline-block px-6 py-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors duration-200"
-            >
-              Contact Our Team
-            </a>
-          </motion.div>
+            Ask Your Question
+          </a>
         </motion.div>
       </div>
     </section>

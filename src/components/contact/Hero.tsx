@@ -20,7 +20,7 @@ const Hero: React.FC = () => {
   
   // Generate particles on the client side only
   useEffect(() => {
-    const colors = ['#3b82f6', '#8b5cf6', '#14b8a6', '#6366f1'];
+    const colors = ['#3b82f6', '#FD673A', '#14b8a6', '#6366f1'];
     const newParticles = Array.from({ length: 30 }).map((_, index) => ({
       id: index,
       x: Math.random() * 100,
@@ -120,14 +120,14 @@ const Hero: React.FC = () => {
         ))}
         
         {/* Ambient gradient blobs */}
-        <div className="absolute top-1/4 right-1/4 w-[40vw] h-[40vw] rounded-full bg-gradient-radial from-blue-500/10 via-blue-500/5 to-transparent blur-3xl" />
-        <div className="absolute bottom-1/4 left-1/4 w-[50vw] h-[50vw] rounded-full bg-gradient-radial from-violet-500/10 via-violet-500/5 to-transparent blur-3xl" />
+        <div className="absolute top-1/4 right-1/4 w-[40vw] h-[40vw] rounded-full bg-gradient-radial from-[#FD673A]/10 via-[#FD673A]/5 to-transparent blur-3xl" />
+        <div className="absolute bottom-1/4 left-1/4 w-[50vw] h-[50vw] rounded-full bg-gradient-radial from-blue-500/10 via-blue-500/5 to-transparent blur-3xl" />
         
         {/* Grid overlay */}
         <div 
           className="absolute inset-0 grid-pattern" 
           style={{
-            backgroundImage: 'linear-gradient(to right, rgba(99, 102, 241, 0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(99, 102, 241, 0.05) 1px, transparent 1px)',
+            backgroundImage: 'linear-gradient(to right, rgba(253, 103, 58, 0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(99, 102, 241, 0.05) 1px, transparent 1px)',
             backgroundSize: '40px 40px'
           }}
         />
@@ -138,7 +138,7 @@ const Hero: React.FC = () => {
       
       {/* Interactive gradient follow mouse */}
       <motion.div 
-        className="absolute w-[50vw] h-[50vh] rounded-full bg-gradient-radial from-blue-500/5 via-violet-500/3 to-transparent blur-3xl z-0 pointer-events-none"
+        className="absolute w-[50vw] h-[50vh] rounded-full bg-gradient-radial from-[#FD673A]/5 via-blue-500/3 to-transparent blur-3xl z-0 pointer-events-none"
         animate={{
           x: mousePosition.x * 100 - 50,
           y: mousePosition.y * 100 - 50
@@ -162,7 +162,7 @@ const Hero: React.FC = () => {
           <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight">
             <div className="overflow-hidden">
               <motion.span 
-                className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-violet-400 to-blue-400 block"
+                className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-[#FD673A] to-blue-400 block"
                 variants={wordAnimation}
               >
                 Let&apos;s Create
@@ -178,7 +178,7 @@ const Hero: React.FC = () => {
             </div>
             <div className="overflow-hidden">
               <motion.span 
-                className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-violet-400 to-blue-400 block"
+                className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-[#FD673A] to-blue-400 block"
                 variants={wordAnimation}
               >
                 Together
@@ -204,7 +204,7 @@ const Hero: React.FC = () => {
         
         {/* Animated line separator */}
         <motion.div 
-          className="w-0 h-px bg-gradient-to-r from-transparent via-blue-500 to-transparent mx-auto mt-12"
+          className="w-0 h-px bg-gradient-to-r from-transparent via-[#FD673A] to-transparent mx-auto mt-12"
           initial={{ width: 0 }}
           animate={{ width: "60%" }}
           transition={{ duration: 1.2, delay: 1 }}
@@ -218,7 +218,7 @@ const Hero: React.FC = () => {
         transition={{ delay: 2, duration: 1 }}
         className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center z-30"
       >
-        <span className="text-blue-200 text-sm mb-2 opacity-70">Scroll to explore</span>
+        <span className="text-[#FD673A]/80 text-sm mb-2 font-medium">Scroll to explore</span>
         <motion.div
           animate={{
             y: [0, 8, 0],
@@ -228,12 +228,27 @@ const Hero: React.FC = () => {
             repeat: Infinity,
             repeatType: "loop",
           }}
-          className="w-6 h-10 rounded-full border-2 border-blue-300/30 flex justify-center p-1"
+          className="w-6 h-10 rounded-full border-2 border-[#FD673A]/40 flex justify-center p-1 relative overflow-hidden group"
         >
+          {/* Animated gradient background on hover */}
           <motion.div 
-            className="w-1.5 h-1.5 rounded-full bg-blue-400"
+            className="absolute inset-0 opacity-0 group-hover:opacity-20 bg-gradient-to-b from-[#FD673A]/0 via-[#FD673A]/30 to-[#FD673A]/0"
+            animate={{
+              y: ["-100%", "100%"],
+            }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              repeatType: "loop",
+              ease: "linear"
+            }}
+          />
+          
+          <motion.div 
+            className="w-1.5 h-1.5 rounded-full bg-[#FD673A] relative z-10"
             animate={{
               y: [0, 16, 0],
+              boxShadow: ["0 0 0px rgba(253, 103, 58, 0.3)", "0 0 8px rgba(253, 103, 58, 0.6)", "0 0 0px rgba(253, 103, 58, 0.3)"]
             }}
             transition={{
               duration: 1.5,

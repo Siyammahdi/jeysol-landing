@@ -99,8 +99,8 @@ const OurVision: React.FC = () => {
             <defs>
               <linearGradient id="horizon-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
                 <stop offset="0%" stopColor="#3B82F6" stopOpacity="0.1" />
-                <stop offset="50%" stopColor="#8B5CF6" stopOpacity="0.2" />
-                <stop offset="100%" stopColor="#14B8A6" stopOpacity="0.1" />
+                <stop offset="50%" stopColor="#FD673A" stopOpacity="0.2" />
+                <stop offset="100%" stopColor="#3B82F6" stopOpacity="0.1" />
               </linearGradient>
             </defs>
           </svg>
@@ -123,9 +123,9 @@ const OurVision: React.FC = () => {
             />
             <defs>
               <linearGradient id="horizon-gradient-2" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#14B8A6" stopOpacity="0.1" />
+                <stop offset="0%" stopColor="#FD673A" stopOpacity="0.1" />
                 <stop offset="50%" stopColor="#3B82F6" stopOpacity="0.2" />
-                <stop offset="100%" stopColor="#8B5CF6" stopOpacity="0.1" />
+                <stop offset="100%" stopColor="#FD673A" stopOpacity="0.1" />
               </linearGradient>
             </defs>
           </svg>
@@ -145,7 +145,7 @@ const OurVision: React.FC = () => {
             transition={{ duration: 1, delay: 0.2 }}
             className="inline-block mb-6"
           >
-            <span className="px-4 py-1.5 text-xs font-medium tracking-wider text-blue-300 uppercase bg-gradient-to-r from-blue-500/20 to-indigo-500/10 backdrop-blur-sm rounded-full border border-blue-500/30 shadow-lg shadow-blue-500/5">
+            <span className="px-4 py-1.5 text-xs font-medium tracking-wider text-blue-300 uppercase bg-gradient-to-r from-blue-500/20 to-[#FD673A]/10 backdrop-blur-sm rounded-full border border-blue-500/30 shadow-lg shadow-blue-500/5">
               Our Vision
             </span>
           </motion.div>
@@ -157,7 +157,7 @@ const OurVision: React.FC = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8 leading-tight"
           >
-            To <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400">transform</span> how the world builds technology by merging <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-violet-400">human creativity</span> with <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-teal-400">technical excellence</span>
+            To <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-[#FD673A]">transform</span> how the world builds technology by merging <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FD673A] to-blue-400">human creativity</span> with <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-[#FD673A]">technical excellence</span>
           </motion.h2>
           
           {/* Supporting Text */}
@@ -179,7 +179,7 @@ const OurVision: React.FC = () => {
             className="mt-12"
           >
             <div className="inline-block">
-              <svg width="120" height="40" viewBox="0 0 120 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-blue-400 opacity-70">
+              <svg width="120" height="40" viewBox="0 0 120 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-[#FD673A] opacity-70">
                 <path d="M10,20 Q30,5 50,20 T90,20" stroke="currentColor" strokeWidth="1" fill="none" />
                 <circle cx="10" cy="20" r="2" fill="currentColor" />
                 <circle cx="110" cy="20" r="2" fill="currentColor" />

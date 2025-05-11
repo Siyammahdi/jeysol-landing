@@ -4,6 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Github, Twitter, Instagram, Linkedin, Mail, MapPin, Phone } from 'lucide-react';
+import Image from 'next/image';
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
@@ -30,11 +31,11 @@ const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="bg-[#070B20] border-t border-blue-500/10 pt-16 pb-8 overflow-hidden relative">
+    <footer className="bg-[#070B20] border-t border-[#FD673A]/10 pt-16 pb-8 overflow-hidden relative">
       {/* Background gradients */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 left-1/3 w-64 h-64 bg-blue-500/5 rounded-full filter blur-[80px]"></div>
-        <div className="absolute bottom-0 right-1/3 w-64 h-64 bg-indigo-500/5 rounded-full filter blur-[100px]"></div>
+        <div className="absolute top-0 left-1/3 w-64 h-64 bg-[#FD673A]/5 rounded-full filter blur-[80px]"></div>
+        <div className="absolute bottom-0 right-1/3 w-64 h-64 bg-blue-600/5 rounded-full filter blur-[100px]"></div>
       </div>
       
       <div className="container mx-auto px-4 md:px-6 relative z-10">
@@ -48,10 +49,15 @@ const Footer: React.FC = () => {
           {/* Column 1: Company Logo & Info */}
           <motion.div variants={itemVariants} className="space-y-6">
             <Link href="/" className="flex items-center">
-              <span className="text-2xl font-bold">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-violet-400 to-teal-400">Jey</span>
-                <span className="text-white">Sol</span>
-              </span>
+              <div className="relative h-10 w-32">
+                <Image 
+                  src="/jeysol-logo.webp" 
+                  alt="JeySol Logo" 
+                  fill
+                  className="object-contain"
+                  priority
+                />
+              </div>
             </Link>
             
             <p className="text-blue-100/60 text-sm max-w-xs">
@@ -72,6 +78,7 @@ const Footer: React.FC = () => {
             <ul className="space-y-3">
               <FooterLink href="/" label="Home" />
               <FooterLink href="/works" label="Our Work" />
+              <FooterLink href="/products" label="Products" />
               <FooterLink href="/about" label="About Us" />
               <FooterLink href="/careers" label="Careers" />
               <FooterLink href="/contact" label="Contact" />
@@ -82,11 +89,12 @@ const Footer: React.FC = () => {
           <motion.div variants={itemVariants}>
             <h3 className="text-white font-medium mb-6">Services</h3>
             <ul className="space-y-3">
-              <FooterLink href="#web-development" label="Web Development" />
-              <FooterLink href="#mobile-apps" label="Mobile Applications" />
-              <FooterLink href="#custom-software" label="Custom Software" />
-              <FooterLink href="#ai-solutions" label="AI & ML Solutions" />
-              <FooterLink href="#cloud-services" label="Cloud Services" />
+              <FooterLink href="/services/web-development" label="Web Development" />
+              <FooterLink href="/services/mobile-development" label="Mobile Development" />
+              <FooterLink href="/services/software-development" label="Software Development" />
+              <FooterLink href="/services/ui-ux-design" label="UI/UX Design" />
+              <FooterLink href="/services/graphics-design" label="Graphics Design" />
+              <FooterLink href="/services/printing-solutions" label="Printing Solutions" />
             </ul>
           </motion.div>
           
@@ -95,18 +103,20 @@ const Footer: React.FC = () => {
             <h3 className="text-white font-medium mb-6">Contact Us</h3>
             <ul className="space-y-5">
               <li className="flex items-start">
-                <MapPin size={18} className="text-blue-400 mr-3 mt-0.5 flex-shrink-0" />
+                <MapPin size={18} className="text-[#FD673A] mr-3 mt-0.5 flex-shrink-0" />
                 <span className="text-blue-100/70 text-sm">
-                  123 Tech Avenue, Suite 400<br />
-                  San Francisco, CA 94107
+                  <span className="font-bold">Jeysol Group Limited</span><br />
+                  124 City Road,<br />
+                  London, EC1V 2NX,<br />
+                  United Kingdom
                 </span>
               </li>
               <li className="flex items-center">
-                <Phone size={18} className="text-blue-400 mr-3 flex-shrink-0" />
-                <span className="text-blue-100/70 text-sm">+1 (555) 123-4567</span>
+                <Phone size={18} className="text-[#FD673A] mr-3 flex-shrink-0" />
+                <span className="text-blue-100/70 text-sm">+44 (0) 2035760384</span>
               </li>
               <li className="flex items-center">
-                <Mail size={18} className="text-blue-400 mr-3 flex-shrink-0" />
+                <Mail size={18} className="text-[#FD673A] mr-3 flex-shrink-0" />
                 <span className="text-blue-100/70 text-sm">info@jeysol.com</span>
               </li>
             </ul>
@@ -114,7 +124,7 @@ const Footer: React.FC = () => {
         </motion.div>
         
         {/* Divider */}
-        <div className="h-px bg-gradient-to-r from-transparent via-blue-500/20 to-transparent my-8"></div>
+        <div className="h-px bg-gradient-to-r from-transparent via-[#FD673A]/20 to-transparent my-8"></div>
         
         {/* Copyright and Legal */}
         <div className="flex flex-col md:flex-row justify-between items-center">
@@ -135,13 +145,13 @@ const Footer: React.FC = () => {
             transition={{ duration: 1, delay: 0.4 }}
             viewport={{ once: true }}
           >
-            <Link href="/privacy" className="text-blue-100/50 text-sm hover:text-blue-300 transition-colors">
+            <Link href="/privacy" className="text-blue-100/50 text-sm hover:text-[#FD673A] transition-colors">
               Privacy Policy
             </Link>
-            <Link href="/terms" className="text-blue-100/50 text-sm hover:text-blue-300 transition-colors">
+            <Link href="/terms" className="text-blue-100/50 text-sm hover:text-[#FD673A] transition-colors">
               Terms of Service
             </Link>
-            <Link href="/cookies" className="text-blue-100/50 text-sm hover:text-blue-300 transition-colors">
+            <Link href="/cookies" className="text-blue-100/50 text-sm hover:text-[#FD673A] transition-colors">
               Cookie Policy
             </Link>
           </motion.div>
@@ -165,7 +175,7 @@ const SocialLink: React.FC<SocialLinkProps> = ({ href, icon, label }) => {
       target="_blank" 
       rel="noopener noreferrer"
       aria-label={label}
-      className="w-8 h-8 rounded-full flex items-center justify-center bg-gradient-to-br from-blue-900/40 to-indigo-900/40 border border-blue-500/20 text-blue-300 hover:text-white hover:border-blue-500/40 hover:from-blue-800/40 hover:to-indigo-800/40 transition-all duration-300"
+      className="w-8 h-8 rounded-full flex items-center justify-center bg-gradient-to-br from-[#FD673A]/20 to-blue-900/40 border border-[#FD673A]/20 text-[#FD673A] hover:text-white hover:border-[#FD673A]/40 hover:from-[#FD673A]/30 hover:to-blue-800/40 transition-all duration-300"
     >
       {icon}
     </a>
@@ -182,7 +192,7 @@ const FooterLink: React.FC<FooterLinkProps> = ({ href, label }) => {
     <li>
       <Link 
         href={href}
-        className="text-blue-100/70 text-sm hover:text-blue-300 transition-colors duration-300 inline-block"
+        className="text-blue-100/70 text-sm hover:text-[#FD673A] transition-colors duration-300 inline-block"
       >
         {label}
       </Link>

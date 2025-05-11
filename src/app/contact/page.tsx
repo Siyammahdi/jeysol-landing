@@ -6,6 +6,7 @@ import ContactMap from '@/components/contact/Map';
 import FAQ from '@/components/contact/FAQ';
 import ContactCTA from '@/components/contact/CTA';
 import { Metadata } from 'next';
+import Navbar from '@/components/ui/Navbar';
 
 export const metadata: Metadata = {
   title: 'Contact Us | JeySol',
@@ -15,6 +16,7 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <main className="bg-[#080D24] text-white">
+      <Navbar />
       <Hero />
       <ContactMethods />
       <Form />

@@ -13,13 +13,11 @@ export const serviceData = [
         strokeLinejoin="round" 
         className="w-full h-full"
       >
-        <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-        <line x1="8" y1="21" x2="16" y2="21"></line>
-        <line x1="12" y1="17" x2="12" y2="21"></line>
+        <path d="M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0021 18V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v12a2.25 2.25 0 002.25 2.25z" />
       </svg>
     ),
-    title: "Web App Development",
-    description: "Building responsive, scalable web applications with modern frameworks like React, Next.js, and Vue. We focus on performance, accessibility, and delightful user experiences that drive engagement and conversion."
+    title: "Web Design & Development",
+    description: "Creating visually stunning, highly functional websites that make a great first impression and drive results. We build responsive corporate websites, e-commerce platforms, and complex web applications optimized for all devices."
   },
   {
     icon: (
@@ -33,12 +31,11 @@ export const serviceData = [
         strokeLinejoin="round" 
         className="w-full h-full"
       >
-        <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
-        <line x1="12" y1="18" x2="12.01" y2="18"></line>
+        <path d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" />
       </svg>
     ),
-    title: "Mobile App Development",
-    description: "Creating native and cross-platform mobile applications that offer seamless user experiences across iOS and Android. We leverage technologies like React Native and Flutter to deliver high-performance apps with native-like feel."
+    title: "Mobile App Design & Development",
+    description: "Building beautiful, high-performance mobile applications for iOS and Android that engage users and drive business growth. We create native, cross-platform, and progressive web apps tailored to your specific needs."
   },
   {
     icon: (
@@ -52,13 +49,11 @@ export const serviceData = [
         strokeLinejoin="round" 
         className="w-full h-full"
       >
-        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-        <path d="M2 17l10 5 10-5"></path>
-        <path d="M2 12l10 5 10-5"></path>
+        <path d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" />
       </svg>
     ),
-    title: "Custom Software Solutions",
-    description: "Developing tailored software solutions that address your unique business challenges. From enterprise applications to specialized tools, we build robust and scalable systems that streamline operations and enhance productivity."
+    title: "Software Development",
+    description: "Developing tailored software solutions that address your unique business challenges. We create custom applications, enterprise systems, cloud solutions, and integrated platforms that streamline operations and enhance productivity."
   },
   {
     icon: (
@@ -72,11 +67,11 @@ export const serviceData = [
         strokeLinejoin="round" 
         className="w-full h-full"
       >
-        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+        <path d="M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245 4.5 4.5 0 008.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 003.388-1.62m-5.043-.025a15.994 15.994 0 011.622-3.395m3.42 3.42a15.995 15.995 0 004.764-4.648l3.876-5.814a1.151 1.151 0 00-1.597-1.597L14.146 6.32a15.996 15.996 0 00-4.649 4.763m3.42 3.42a6.776 6.776 0 00-3.42-3.42" />
       </svg>
     ),
-    title: "DevOps & Cloud Services",
-    description: "Optimizing your development lifecycle and infrastructure with cutting-edge DevOps practices and cloud solutions. We help businesses implement CI/CD pipelines, containerization, and efficient cloud architectures on AWS, Azure, or GCP."
+    title: "UI/UX Design",
+    description: "Creating intuitive, engaging interfaces that delight users while achieving business goals. We combine visual design with user psychology to deliver exceptional digital experiences across websites, apps, and software systems."
   },
   {
     icon: (
@@ -90,17 +85,11 @@ export const serviceData = [
         strokeLinejoin="round" 
         className="w-full h-full"
       >
-        <circle cx="12" cy="12" r="10"></circle>
-        <circle cx="12" cy="12" r="4"></circle>
-        <line x1="4.93" y1="4.93" x2="9.17" y2="9.17"></line>
-        <line x1="14.83" y1="14.83" x2="19.07" y2="19.07"></line>
-        <line x1="14.83" y1="9.17" x2="19.07" y2="4.93"></line>
-        <line x1="14.83" y1="9.17" x2="18.36" y2="5.64"></line>
-        <line x1="4.93" y1="19.07" x2="9.17" y2="14.83"></line>
+        <path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
       </svg>
     ),
-    title: "AI & Machine Learning",
-    description: "Harnessing the power of artificial intelligence to drive innovation and efficiency in your business. We build intelligent systems that leverage machine learning, natural language processing, and computer vision to extract insights and automate processes."
+    title: "Graphics Design",
+    description: "Delivering visually compelling designs that strengthen your brand identity. Our graphics design services include brand identity, marketing materials, social media assets, illustrations, packaging, and publication design."
   },
   {
     icon: (
@@ -114,13 +103,10 @@ export const serviceData = [
         strokeLinejoin="round" 
         className="w-full h-full"
       >
-        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-        <circle cx="9" cy="7" r="4"></circle>
-        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+        <path d="M6.72 13.829c-.24.03-.48.062-.72.096m.72-.096a42.415 42.415 0 0110.56 0m-10.56 0L6.34 18m10.94-4.171c.24.03.48.062.72.096m-.72-.096L17.66 18m0 0l.229 2.523a1.125 1.125 0 01-1.12 1.227H7.231c-.662 0-1.18-.568-1.12-1.227L6.34 18m11.318 0h1.091A2.25 2.25 0 0021 15.75V9.456c0-1.081-.768-2.015-1.837-2.175a48.055 48.055 0 00-1.913-.247M6.34 18H5.25A2.25 2.25 0 013 15.75V9.456c0-1.081.768-2.015 1.837-2.175a48.041 48.041 0 011.913-.247m10.5 0a48.536 48.536 0 00-10.5 0m10.5 0V3.375c0-.621-.504-1.125-1.125-1.125h-8.25c-.621 0-1.125.504-1.125 1.125v3.659M18 10.5h.008v.008H18V10.5zm-3 0h.008v.008H15V10.5z" />
       </svg>
     ),
-    title: "Digital Transformation",
-    description: "Guiding businesses through comprehensive digital transformations that enhance operational efficiency and customer experiences. We help organizations adopt modern technologies, optimize processes, and build a culture of innovation."
+    title: "Printing Solutions",
+    description: "Providing high-quality printing services for all your business needs. We offer marketing materials, corporate stationery, publication printing, packaging solutions, large format printing, and promotional products."
   }
 ]; 

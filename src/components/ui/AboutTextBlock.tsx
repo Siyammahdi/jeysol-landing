@@ -62,7 +62,7 @@ const AboutTextBlock: React.FC<AboutTextBlockProps> = ({
     >
       {/* Title with Icon */}
       <div className="flex items-center mb-3">
-        <div className="w-8 h-8 mr-3 flex items-center justify-center rounded-full bg-gradient-to-tr from-blue-500/20 to-indigo-500/20 border border-blue-500/30 text-blue-400">
+        <div className="w-8 h-8 mr-3 flex items-center justify-center rounded-full bg-gradient-to-tr from-[#FD673A]/30 to-blue-500/20 border border-[#FD673A]/30 text-[#FD673A]">
           {icon}
         </div>
         <h3 className="text-2xl font-semibold text-blue-100">{title}</h3>
@@ -70,7 +70,7 @@ const AboutTextBlock: React.FC<AboutTextBlockProps> = ({
       
       {/* Glowing divider line */}
       <motion.div 
-        className="h-px bg-gradient-to-r from-blue-500/50 to-transparent mb-4 ml-11"
+        className="h-px bg-gradient-to-r from-[#FD673A]/60 via-[#FD673A]/40 to-transparent mb-4 ml-11"
         initial={{ width: 0 }}
         animate={isInView ? { width: "100%" } : { width: 0 }}
         transition={{ duration: 0.8, delay: 0.3 + (index * 0.1) }}
@@ -102,11 +102,11 @@ const AboutTextBlock: React.FC<AboutTextBlockProps> = ({
             >
               {isHighlighted ? (
                 <span 
-                  className="text-blue-300 font-medium relative group-hover:text-blue-200 transition-colors duration-300 cursor-default"
+                  className="text-[#FD673A] font-medium relative group-hover:text-[#FD673A]/90 transition-colors duration-300 cursor-default"
                 >
                   {cleanWord}
                   {punctuation ? punctuation[0] : ''}
-                  <span className="absolute -bottom-px left-0 w-full h-px bg-blue-400/50 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+                  <span className="absolute -bottom-px left-0 w-full h-px bg-gradient-to-r from-[#FD673A]/30 via-[#FD673A]/60 to-[#FD673A]/30 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
                 </span>
               ) : (
                 <span>

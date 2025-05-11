@@ -44,13 +44,13 @@ const MeetTheTeam: React.FC = () => {
               transition: "opacity 0.6s ease-out, transform 0.8s ease-out"
             }}
           >
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-indigo-400 to-teal-400">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-[#FD673A] to-blue-400">
               Meet the Team
             </span>
           </motion.h2>
           
           <motion.div 
-            className="w-20 h-1 bg-gradient-to-r from-blue-500 via-indigo-500 to-teal-500 mx-auto rounded-full mb-6"
+            className="w-20 h-1 bg-gradient-to-r from-blue-500 via-[#FD673A] to-blue-500 mx-auto rounded-full mb-6"
             initial={{ width: 0, opacity: 0 }}
             animate={isHeadingInView ? { width: 80, opacity: 1 } : { width: 0, opacity: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -92,7 +92,7 @@ const MeetTheTeam: React.FC = () => {
           className="mt-16 flex justify-center"
         >
           <Link href="#" className="group relative inline-flex items-center">
-            <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-violet-600 rounded-lg blur opacity-60 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-pulse-slow"></div>
+            <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-[#FD673A] rounded-lg blur opacity-60 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-pulse-slow"></div>
             <button className="relative px-8 py-4 font-medium text-white bg-[#0A0F2C] rounded-lg leading-none flex items-center">
               <span>View Full Team</span>
               <svg xmlns="http://www.w3.org/2000/svg" className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -148,11 +148,11 @@ const TeamMemberCard: React.FC<TeamMemberCardProps> = ({
       className="relative group"
     >
       {/* Card Container */}
-      <div className="relative bg-gradient-to-br from-blue-900/20 to-indigo-900/10 backdrop-blur-sm rounded-2xl overflow-hidden aspect-[3/4] flex flex-col h-full z-10">
+      <div className="relative bg-gradient-to-br from-blue-900/20 to-[#FD673A]/10 backdrop-blur-sm rounded-2xl overflow-hidden aspect-[3/4] flex flex-col h-full z-10">
         {/* Team member image */}
         <div className="relative w-full h-3/4 overflow-hidden">
           {/* Placeholder for image with gradients */}
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-900/50 to-indigo-900/60 z-10"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-900/50 to-[#FD673A]/30 z-10"></div>
           
           {/* Initials placeholder */}
           <div className="absolute inset-0 flex items-center justify-center z-20">
@@ -163,11 +163,11 @@ const TeamMemberCard: React.FC<TeamMemberCardProps> = ({
           
           {/* Ambient glow on hover */}
           <motion.div 
-            className="absolute inset-0 bg-gradient-to-t from-blue-500/0 to-indigo-500/0 z-30"
+            className="absolute inset-0 bg-gradient-to-t from-blue-500/0 to-[#FD673A]/0 z-30"
             animate={{
               background: isHovered 
-                ? 'linear-gradient(to top, rgba(59, 130, 246, 0.1), rgba(99, 102, 241, 0.2))' 
-                : 'linear-gradient(to top, rgba(59, 130, 246, 0), rgba(99, 102, 241, 0))'
+                ? 'linear-gradient(to top, rgba(59, 130, 246, 0.1), rgba(253, 103, 58, 0.2))' 
+                : 'linear-gradient(to top, rgba(59, 130, 246, 0), rgba(253, 103, 58, 0))'
             }}
             transition={{ duration: 0.3 }}
           />
@@ -177,7 +177,7 @@ const TeamMemberCard: React.FC<TeamMemberCardProps> = ({
         <div className="p-5 flex-1 flex flex-col justify-between z-10 relative">
           <div>
             <h3 className="text-xl font-bold text-white">{name}</h3>
-            <p className="text-blue-300 text-sm">{role}</p>
+            <p className="text-[#FD673A] text-sm">{role}</p>
           </div>
           
           {/* Motto - Only visible on hover */}
@@ -205,7 +205,7 @@ const TeamMemberCard: React.FC<TeamMemberCardProps> = ({
             {socialLinks?.linkedin && (
               <Link 
                 href={socialLinks.linkedin}
-                className="text-blue-300 hover:text-blue-100 transition-colors duration-200"
+                className="text-[#FD673A] hover:text-[#FD673A]/80 transition-colors duration-200"
                 aria-label={`${name}'s LinkedIn profile`}
               >
                 <Linkedin size={18} />
@@ -238,7 +238,7 @@ const TeamMemberCard: React.FC<TeamMemberCardProps> = ({
         className="absolute inset-0 rounded-2xl z-0"
         animate={{
           background: isHovered 
-            ? 'linear-gradient(145deg, rgba(59, 130, 246, 0.2), rgba(99, 102, 241, 0.3))' 
+            ? 'linear-gradient(145deg, rgba(59, 130, 246, 0.2), rgba(253, 103, 58, 0.3))' 
             : 'rgba(0, 0, 0, 0)',
           scale: isHovered ? 1.05 : 1,
           y: isHovered ? -8 : 0
@@ -248,14 +248,10 @@ const TeamMemberCard: React.FC<TeamMemberCardProps> = ({
       
       {/* Glow effect on hover */}
       <motion.div 
-        className="absolute -inset-1 rounded-2xl z-0 opacity-0"
-        animate={{
-          boxShadow: isHovered 
-            ? '0 20px 40px -20px rgba(66, 71, 112, 0.5)' 
-            : '0 0 0 0 rgba(66, 71, 112, 0)',
-          opacity: isHovered ? 0.5 : 0
+        className="absolute -inset-1 rounded-2xl z-0 opacity-0 group-hover:opacity-60 blur-xl transition-opacity duration-500"
+        style={{
+          background: 'linear-gradient(145deg, rgba(59, 130, 246, 0.3), rgba(253, 103, 58, 0.2))'
         }}
-        transition={{ duration: 0.4 }}
       />
     </motion.div>
   );

@@ -4,6 +4,7 @@ import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { MapPin, Phone, Mail, Building } from 'lucide-react';
 import { officeLocations } from '@/lib/contactConfig';
+import { FiMapPin, FiPhone, FiMail, FiClock } from 'react-icons/fi';
 
 const ContactMap: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -36,6 +37,8 @@ const ContactMap: React.FC = () => {
     }
   };
   
+  const businessHours = 'Monday - Friday: 9AM - 6PM GMT';
+  
   return (
     <section 
       ref={sectionRef}
@@ -44,14 +47,14 @@ const ContactMap: React.FC = () => {
       {/* Background elements */}
       <div className="absolute inset-0 z-0">
         {/* Abstract gradient shapes */}
-        <div className="absolute top-0 left-1/4 w-1/2 h-1/2 bg-gradient-radial from-indigo-900/20 via-indigo-900/10 to-transparent blur-3xl" />
-        <div className="absolute bottom-0 right-1/4 w-1/2 h-1/2 bg-gradient-radial from-blue-900/20 via-blue-900/10 to-transparent blur-3xl" />
+        <div className="absolute top-0 left-1/4 w-1/2 h-1/2 bg-gradient-radial from-blue-900/20 via-blue-900/10 to-transparent blur-3xl" />
+        <div className="absolute bottom-0 right-1/4 w-1/2 h-1/2 bg-gradient-radial from-[#FD673A]/20 via-[#FD673A]/10 to-transparent blur-3xl" />
         
         {/* Subtle dot pattern */}
         <div 
           className="absolute inset-0 opacity-10" 
           style={{ 
-            backgroundImage: 'radial-gradient(circle, rgba(99, 102, 241, 0.1) 1px, transparent 1px)', 
+            backgroundImage: 'radial-gradient(circle, rgba(59, 130, 246, 0.1) 1px, transparent 1px)', 
             backgroundSize: '30px 30px' 
           }}
         />
@@ -69,11 +72,11 @@ const ContactMap: React.FC = () => {
             {/* Section Title */}
             <motion.div variants={itemVariants}>
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-indigo-400 to-violet-400">
-                  Visit Our Office
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-[#FD673A] to-blue-400">
+                  Our Location
                 </span>
               </h2>
-              <div className="w-24 h-1 bg-gradient-to-r from-blue-500 via-indigo-500 to-violet-500 rounded-full mb-8" />
+              <div className="w-24 h-1 bg-gradient-to-r from-blue-500 via-[#FD673A] to-blue-500 rounded-full mb-8" />
             </motion.div>
             
             {/* Office Details */}
@@ -81,30 +84,18 @@ const ContactMap: React.FC = () => {
               {/* Office Building */}
               <motion.div variants={itemVariants} className="flex items-start">
                 <div className="mr-4 p-3 rounded-lg bg-gradient-to-br from-blue-600/20 to-indigo-600/10 text-blue-400">
-                  <Building size={20} />
+                  <FiMapPin className="text-[#FD673A]" />
                 </div>
                 <div>
                   <h3 className="font-medium text-white text-lg">{mainOffice.title}</h3>
-                  <p className="text-blue-100/70 mt-1">{mainOffice.country}</p>
-                </div>
-              </motion.div>
-              
-              {/* Address */}
-              <motion.div variants={itemVariants} className="flex items-start">
-                <div className="mr-4 p-3 rounded-lg bg-gradient-to-br from-blue-600/20 to-indigo-600/10 text-blue-400">
-                  <MapPin size={20} />
-                </div>
-                <div>
-                  <h3 className="font-medium text-white">Address</h3>
-                  <p className="text-blue-100/70 mt-1">{mainOffice.address},</p>
-                  <p className="text-blue-100/70">{mainOffice.city}</p>
+                  <p className="text-blue-100/70 mt-1">{mainOffice.address}, {mainOffice.city}, {mainOffice.country}</p>
                 </div>
               </motion.div>
               
               {/* Phone */}
               <motion.div variants={itemVariants} className="flex items-start">
                 <div className="mr-4 p-3 rounded-lg bg-gradient-to-br from-blue-600/20 to-indigo-600/10 text-blue-400">
-                  <Phone size={20} />
+                  <FiPhone className="text-[#FD673A]" />
                 </div>
                 <div>
                   <h3 className="font-medium text-white">Phone</h3>
@@ -115,7 +106,7 @@ const ContactMap: React.FC = () => {
               {/* Email */}
               <motion.div variants={itemVariants} className="flex items-start">
                 <div className="mr-4 p-3 rounded-lg bg-gradient-to-br from-blue-600/20 to-indigo-600/10 text-blue-400">
-                  <Mail size={20} />
+                  <FiMail className="text-[#FD673A]" />
                 </div>
                 <div>
                   <h3 className="font-medium text-white">Email</h3>
@@ -126,20 +117,7 @@ const ContactMap: React.FC = () => {
               {/* Business Hours - Additional information */}
               <motion.div variants={itemVariants} className="mt-8 p-4 rounded-lg bg-gradient-to-br from-indigo-900/30 to-blue-900/20 border border-indigo-500/10">
                 <h3 className="font-medium text-white mb-2">Business Hours</h3>
-                <ul className="space-y-1 text-blue-100/70">
-                  <li className="flex justify-between">
-                    <span>Monday - Friday:</span>
-                    <span>9:00 AM - 6:00 PM</span>
-                  </li>
-                  <li className="flex justify-between">
-                    <span>Saturday:</span>
-                    <span>10:00 AM - 4:00 PM</span>
-                  </li>
-                  <li className="flex justify-between">
-                    <span>Sunday:</span>
-                    <span>Closed</span>
-                  </li>
-                </ul>
+                <p className="text-blue-100/70">{businessHours}</p>
               </motion.div>
             </div>
           </motion.div>
@@ -153,7 +131,7 @@ const ContactMap: React.FC = () => {
           >
             <div className="relative rounded-2xl overflow-hidden aspect-square md:aspect-auto md:h-[500px] shadow-xl">
               {/* Map placeholder with stylized design */}
-              <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/50 to-blue-900/40 backdrop-blur-sm">
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-900/50 to-blue-900/40 backdrop-blur-sm">
                 {/* Stylized map background */}
                 <div className="absolute inset-0 opacity-20 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAwIiBoZWlnaHQ9IjYwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMCAwaDYwMHY2MDBIMHoiIGZpbGw9Im5vbmUiLz48cGF0aCBkPSJNMCAwaDYwMHY2MDBIMHoiIGZpbGw9Im5vbmUiLz48cGF0aCBkPSJNMCAwaDYwMHY2MDBIMHoiIGZpbGw9Im5vbmUiLz48cGF0aCBmaWxsPSIjMDAwIiBvcGFjaXR5PSIuMiIgZD0iTTAgMGg2MDB2NjAwSDB6Ii8+PHBhdGggZD0iTTAgMGg2MDB2NjAwSDB6IiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTAgMGg2MDB2NjAwSDB6IiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTAgMGg2MDB2NjAwSDB6IiBmaWxsPSJub25lIi8+PHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMzk1QkZDIiBzdHJva2Utd2lkdGg9Ii41IiBkPSJNMTcwLjggOTBsMzEuOS0yMSA1OC41LTMgNjkuOC0xNi41IDUzLjEgMjYuNyA1OC40LTI2LjdoNTYuOGwtMS4zIDM3LjQtNy42IDI2LjctMzQuNiAyMS03LjYgMjYuOC0yMi40IDUuNy01MSA0Mi42LTEzLjQgNTMuMiAyNi44IDM3LjQgMzEuOSA1My4xdjQyLjZsLTI2LjggNDcuOSAyOS4zIDQyLjZoNjEuMWw2OS44LTUuNyAxNS45LTY0LjEtMjAuNi0zNy40IDI5LjMtMzIuMSA0My45LTEzLjMgMzcuMiA3LjkgMzEuNC0yNi43LTEyLjktNjkuOCAxNS45LTI2LjggNjQuMSAxNS45IDI0LjEtMjEiLz48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMzOTVCRkMiIHN0cm9rZS13aWR0aD0iLjUiIGQ9Ik0xNDQuMSA5MGw1OC41LTIxIDU4LjUtMyA2OS44LTE2LjUgNTMuMSAyNi43IDU4LjQtMjYuN2g1Ni44bC0xLjMgMzcuNC03LjYgMjYuNy0zNC42IDIxLTcuNiAyNi44LTIyLjQgNS43LTUxIDQyLjYtMTMuNCA1My4yIDI2LjggMzcuNCAzMS45IDUzLjF2NDIuNmwtMjYuOCA0Ny45IDI5LjMgNDIuNmg2MS4xbDY5LjgtNS43IDE1LjktNjQuMS0yMC42LTM3LjQgMjkuMy0zMi4xIDQzLjktMTMuMyAzNy4yIDcuOSAzMS40LTI2LjctMTIuOS02OS44IDE1LjktMjYuOCA2NC4xIDE1LjkiLz48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMzOTVCRkMiIHN0cm9rZS13aWR0aD0iLjUiIGQ9Ik0zMDkuOCAxMTZsNzEuMy0zOS4yIDIxIDM0LjYgNDQuOSAxNi41IDQ3LjkgNzkuNC02LjcgMTQuOSAyMS4yIDMxLjQgNTUuOCAxMi45IDM1LjEgNDEuOSA1Ni4zIDE4LjQgMjMuMSA0MS45IDE2LjUgNTYuNyAzOSAxNiIvPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzM5NUJGQyIgc3Ryb2tlLXdpZHRoPSIuNSIgZD0iTTE0Mi4xIDExNmw3MS4zLTM5LjIgMjEgMzQuNiA0NC45IDE2LjUgNDcuOCA3OS40LTYuNyAxNC45IDIxLjMgMzEuNCA1NS43IDEyLjkgMzUuMSA0MS45IDU2LjQgMTguNCAyMy4xIDQxLjkgMTYuNSA1Ni43IDM5IDE2Ii8+PHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMzk1QkZDIiBzdHJva2Utd2lkdGg9Ii41IiBkPSJNMTA1LjYgMTE2bDcxLjMtMzkuMiAyMSAzNC42IDQ0LjkgMTYuNSA0Ny45IDc5LjQtNi43IDE0LjkgMjEuMiAzMS40IDU1LjggMTIuOSAzNS4xIDQxLjkgNTYuMyAxOC40IDIzLjEgNDEuOSAxNi41IDU2LjcgMzkgMTYiLz48L3N2Zz4=')] bg-center bg-no-repeat" />
                 
@@ -161,7 +139,7 @@ const ContactMap: React.FC = () => {
                 <div 
                   className="absolute inset-0 opacity-20" 
                   style={{ 
-                    backgroundImage: 'linear-gradient(to right, rgba(99, 102, 241, 0.3) 1px, transparent 1px), linear-gradient(to bottom, rgba(99, 102, 241, 0.3) 1px, transparent 1px)',
+                    backgroundImage: 'linear-gradient(to right, rgba(59, 130, 246, 0.3) 1px, transparent 1px), linear-gradient(to bottom, rgba(59, 130, 246, 0.3) 1px, transparent 1px)',
                     backgroundSize: '40px 40px'
                   }}
                 />
@@ -190,14 +168,14 @@ const ContactMap: React.FC = () => {
                       }}
                       className="w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center"
                     >
-                      <div className="w-6 h-6 rounded-full bg-gradient-to-r from-blue-500 to-indigo-500 flex items-center justify-center">
-                        <MapPin className="text-white" size={14} />
+                      <div className="w-6 h-6 rounded-full bg-gradient-to-r from-blue-500 to-[#FD673A] flex items-center justify-center">
+                        <FiMapPin className="text-white" size={14} />
                       </div>
                     </motion.div>
                   </motion.div>
                   
                   {/* City label near pin */}
-                  <div className="absolute left-1/2 transform -translate-x-1/2 mt-2 bg-gradient-to-r from-blue-900/80 to-indigo-900/80 px-3 py-1 rounded-full backdrop-blur-sm border border-indigo-500/20">
+                  <div className="absolute left-1/2 transform -translate-x-1/2 mt-2 bg-gradient-to-r from-blue-900/80 to-blue-900/80 px-3 py-1 rounded-full backdrop-blur-sm border border-blue-500/20">
                     <p className="text-blue-100 text-sm font-medium whitespace-nowrap">{mainOffice.city}</p>
                   </div>
                 </div>

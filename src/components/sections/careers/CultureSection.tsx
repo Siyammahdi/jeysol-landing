@@ -34,11 +34,20 @@ const CultureSection = () => {
       className="py-24 relative overflow-hidden"
       id="culture"
     >
-      {/* Background decoration */}
-      <div className="absolute -top-40 -right-40 w-96 h-96 bg-gradient-to-br from-indigo-500/20 via-indigo-500/10 to-transparent rounded-full blur-3xl"></div>
-      <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-gradient-to-br from-purple-500/20 via-purple-500/10 to-transparent rounded-full blur-3xl"></div>
+      {/* Enhanced Background decoration */}
+      <div className="absolute inset-0 bg-[#090E27]/30"></div>
+      <div className="absolute -top-40 -right-40 w-96 h-96 bg-gradient-to-br from-[#FD673A]/20 via-indigo-500/10 to-transparent rounded-full blur-3xl"></div>
+      <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-gradient-to-br from-blue-500/20 via-purple-500/10 to-transparent rounded-full blur-3xl"></div>
       
-      <div className="container mx-auto px-4 md:px-6">
+      {/* Subtle dot pattern */}
+      <div className="absolute inset-0 opacity-[0.03]" 
+        style={{ 
+          backgroundImage: 'radial-gradient(circle, rgba(253, 103, 58, 0.4) 1px, transparent 1px)', 
+          backgroundSize: '30px 30px' 
+        }}
+      />
+      
+      <div className="container mx-auto px-4 md:px-6 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left Column - Text content */}
           <motion.div
@@ -52,7 +61,7 @@ const CultureSection = () => {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="mb-4"
             >
-              <span className="text-indigo-400 font-medium text-sm uppercase tracking-wider">Our Culture</span>
+              <span className="text-[#FD673A] font-medium text-sm uppercase tracking-wider">Our Culture</span>
             </motion.div>
             
             <motion.h2 
@@ -62,7 +71,7 @@ const CultureSection = () => {
               className="text-3xl md:text-4xl font-bold text-white mb-6"
             >
               A workplace that inspires{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-500">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FD673A] to-blue-500">
                 creativity and growth
               </span>
             </motion.h2>
@@ -95,11 +104,11 @@ const CultureSection = () => {
                 <motion.div
                   key={index}
                   variants={itemVariants}
-                  className="flex items-start p-4 bg-indigo-900/20 rounded-xl border border-indigo-500/20"
+                  className="flex items-start p-4 bg-indigo-900/20 rounded-xl border border-indigo-500/20 hover:border-[#FD673A]/30 transition-all group duration-300"
                 >
                   <div className="mr-3 mt-1">
                     {/* Render icon based on icon name */}
-                    <div className="w-8 h-8 rounded-lg bg-indigo-600/20 border border-indigo-500/30 flex items-center justify-center text-indigo-400">
+                    <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#FD673A]/20 to-indigo-600/20 border border-indigo-500/30 flex items-center justify-center text-[#FD673A] group-hover:border-[#FD673A]/50 transition-all duration-300">
                       {value.icon === 'lightbulb' && (
                         <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
@@ -128,7 +137,7 @@ const CultureSection = () => {
                     </div>
                   </div>
                   <div>
-                    <h3 className="font-medium text-white text-lg mb-1">{value.title}</h3>
+                    <h3 className="font-medium text-white text-lg mb-1 group-hover:text-[#FD673A]/90 transition-colors">{value.title}</h3>
                     <p className="text-blue-100/70 text-sm">{value.description}</p>
                   </div>
                 </motion.div>
@@ -153,33 +162,45 @@ const CultureSection = () => {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0A0F2C]/80 via-[#0A0F2C]/30 to-transparent mix-blend-overlay"></div>
               
+              {/* Animated Gradient Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-tr from-[#FD673A]/10 via-transparent to-blue-500/10 opacity-60"></div>
+              
+              {/* Enhanced image frame */}
+              <div className="absolute inset-0 border-2 border-[#FD673A]/20 rounded-2xl"></div>
+              
+              {/* Corners decoration */}
+              <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-[#FD673A]/40 rounded-tl-2xl"></div>
+              <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-[#FD673A]/40 rounded-tr-2xl"></div>
+              <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-[#FD673A]/40 rounded-bl-2xl"></div>
+              <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-[#FD673A]/40 rounded-br-2xl"></div>
+              
               {/* Floating stats */}
-              <motion.div
+              {/* <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ duration: 0.6, delay: 0.7 }}
-                className="absolute bottom-8 left-8 right-8 px-6 py-5 rounded-xl backdrop-blur-md bg-indigo-950/50 border border-indigo-500/20"
+                className="absolute bottom-8 left-8 right-8 px-6 py-5 rounded-xl backdrop-blur-md bg-gradient-to-br from-indigo-950/50 to-indigo-900/30 border border-[#FD673A]/20"
               >
                 <div className="grid grid-cols-3 gap-4">
                   <div className="text-center">
-                    <div className="text-3xl font-bold text-white mb-1">90%</div>
+                    <div className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-[#FD673A]/90 mb-1">90%</div>
                     <div className="text-blue-200/70 text-sm">Employee Satisfaction</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-3xl font-bold text-white mb-1">4.8</div>
+                    <div className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-[#FD673A]/90 mb-1">4.8</div>
                     <div className="text-blue-200/70 text-sm">Glassdoor Rating</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-3xl font-bold text-white mb-1">92%</div>
+                    <div className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-[#FD673A]/90 mb-1">92%</div>
                     <div className="text-blue-200/70 text-sm">Would Refer a Friend</div>
                   </div>
                 </div>
-              </motion.div>
+              </motion.div> */}
             </div>
             
             {/* Decoration elements */}
-            <div className="absolute -top-6 -right-6 w-24 h-24 bg-indigo-600/20 rounded-lg blur-xl"></div>
-            <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-purple-600/20 rounded-lg blur-xl"></div>
+            <div className="absolute -top-6 -right-6 w-24 h-24 bg-[#FD673A]/20 rounded-lg blur-xl"></div>
+            <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-blue-600/20 rounded-lg blur-xl"></div>
           </motion.div>
         </div>
       </div>

@@ -27,7 +27,7 @@ const Achievements: React.FC = () => {
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#0F172A]/50 to-transparent"></div>
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-1/4 right-1/4 w-64 h-64 rounded-full bg-blue-500 filter blur-[100px]"></div>
-        <div className="absolute bottom-1/4 left-1/3 w-80 h-80 rounded-full bg-indigo-500 filter blur-[120px]"></div>
+        <div className="absolute bottom-1/4 left-1/3 w-80 h-80 rounded-full bg-[#FD673A] filter blur-[120px]"></div>
       </div>
       
       <div className="container mx-auto px-4 md:px-6 relative z-10">
@@ -39,7 +39,7 @@ const Achievements: React.FC = () => {
             transition={{ duration: 0.6 }}
             className="inline-block mb-4"
           >
-            <span className="px-4 py-1.5 text-xs font-medium tracking-wider text-blue-300 uppercase bg-gradient-to-r from-blue-500/20 to-indigo-500/10 backdrop-blur-sm rounded-full border border-blue-500/30 shadow-lg shadow-blue-500/5">
+            <span className="px-4 py-1.5 text-xs font-medium tracking-wider text-blue-300 uppercase bg-gradient-to-r from-blue-500/20 to-[#FD673A]/10 backdrop-blur-sm rounded-full border border-blue-500/30 shadow-lg shadow-blue-500/5">
               Our Journey
             </span>
           </motion.div>
@@ -66,11 +66,11 @@ const Achievements: React.FC = () => {
         {/* Timeline */}
         <div className="relative mt-20">
           {/* Vertical Timeline Line */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-500/10 via-blue-400/30 to-indigo-500/10"></div>
+          <div className="absolute left-1/2 transform -translate-x-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-500/10 via-blue-400/30 to-[#FD673A]/10"></div>
           
           {/* Animated progress line */}
           <motion.div 
-            className="absolute left-1/2 transform -translate-x-1/2 top-0 w-0.5 bg-gradient-to-b from-blue-400 to-indigo-500 origin-top"
+            className="absolute left-1/2 transform -translate-x-1/2 top-0 w-0.5 bg-gradient-to-b from-blue-400 to-[#FD673A] origin-top"
             style={{ height: lineHeight }}
           ></motion.div>
           
@@ -93,7 +93,7 @@ const Achievements: React.FC = () => {
                       w-10 h-10 md:w-16 md:h-16 rounded-full 
                       flex items-center justify-center font-bold 
                       ${milestone.isKeyEvent 
-                        ? 'bg-gradient-to-br from-blue-500 to-indigo-600 text-white shadow-lg shadow-blue-500/20' 
+                        ? 'bg-gradient-to-br from-blue-500 to-[#FD673A] text-white shadow-lg shadow-blue-500/20' 
                         : 'bg-gradient-to-br from-slate-800 to-slate-900 text-blue-300 border border-slate-700'}
                     `}>
                       {milestone.year}
@@ -108,7 +108,7 @@ const Achievements: React.FC = () => {
                     <div className={`
                       p-6 rounded-xl bg-gradient-to-br 
                       ${milestone.isKeyEvent 
-                        ? 'from-blue-500/10 to-indigo-600/5 border border-blue-500/20' 
+                        ? 'from-blue-500/10 to-[#FD673A]/5 border border-blue-500/20' 
                         : 'from-slate-800/30 to-slate-900/20 border border-slate-700/30'}
                       hover:shadow-lg hover:shadow-blue-500/5 transition-all duration-300
                     `}>

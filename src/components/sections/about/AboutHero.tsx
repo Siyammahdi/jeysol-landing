@@ -95,7 +95,7 @@ const AboutHero: React.FC = () => {
         
         {/* Second circular accent */}
         <motion.div
-          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[100vw] h-[100vw] rounded-full border border-indigo-500/20"
+          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[100vw] h-[100vw] rounded-full border border-[#FD673A]/20"
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 0.7 }}
           transition={{ duration: 2.5, ease: "easeOut", delay: 0.3 }}
@@ -116,7 +116,7 @@ const AboutHero: React.FC = () => {
             className="mb-8"
           >
             <div className="inline-block">
-              <span className="px-4 py-1.5 text-xs font-medium tracking-wider text-blue-300 uppercase bg-gradient-to-r from-blue-500/20 to-indigo-500/10 backdrop-blur-sm rounded-full border border-blue-500/30 shadow-lg shadow-blue-500/5">
+              <span className="px-4 py-1.5 text-xs font-medium tracking-wider text-blue-300 uppercase bg-gradient-to-r from-blue-500/20 to-[#FD673A]/10 backdrop-blur-sm rounded-full border border-blue-500/30 shadow-lg shadow-blue-500/5">
                 About Us
               </span>
             </div>
@@ -131,7 +131,7 @@ const AboutHero: React.FC = () => {
           >
             We&apos;re a team of{' '}
             <span className="relative">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-500">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-[#FD673A]">
                 creators & innovators
               </span>
               <svg className="absolute -bottom-4 left-0 right-0 w-full opacity-70" viewBox="0 0 100 10" preserveAspectRatio="none">
@@ -139,7 +139,7 @@ const AboutHero: React.FC = () => {
                 <defs>
                   <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
                     <stop offset="0%" stopColor="#3B82F6" />
-                    <stop offset="100%" stopColor="#6366F1" />
+                    <stop offset="100%" stopColor="#FD673A" />
                   </linearGradient>
                 </defs>
               </svg>
@@ -158,7 +158,7 @@ const AboutHero: React.FC = () => {
           </motion.p>
           
           {/* Key stats */}
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
@@ -183,7 +183,7 @@ const AboutHero: React.FC = () => {
               <span className="text-3xl md:text-4xl font-bold text-white mb-1">12</span>
               <span className="text-blue-300/70">Countries</span>
             </div>
-          </motion.div>
+          </motion.div> */}
         </div>
       </motion.div>
       
@@ -196,12 +196,12 @@ const AboutHero: React.FC = () => {
       >
         <span className="text-blue-300/70 text-sm mb-2">Scroll to explore</span>
         <motion.div
-          className="w-6 h-10 rounded-full border-2 border-blue-500/30 flex justify-center p-1"
+          className="w-6 h-10 rounded-full border-2 border-[#FD673A]/30 flex justify-center p-1"
           initial={{ y: 0 }}
           animate={{ y: [0, 5, 0] }}
           transition={{ duration: 1.5, repeat: Infinity }}
         >
-          <motion.div className="w-1.5 h-1.5 bg-blue-400 rounded-full" />
+          <motion.div className="w-1.5 h-1.5 bg-[#FD673A] rounded-full" />
         </motion.div>
       </motion.div>
     </div>

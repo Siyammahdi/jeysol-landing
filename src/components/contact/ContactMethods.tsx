@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { contactMethods, ContactMethod } from '@/lib/contactConfig';
+import { FiMail, FiMessageSquare, FiPhone, FiClock } from 'react-icons/fi';
 
 const ContactMethods: React.FC = () => {
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
@@ -35,11 +36,11 @@ const ContactMethods: React.FC = () => {
           className="text-center mb-16"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-indigo-400 to-violet-400">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-[#FD673A] to-blue-400">
               Get in Touch
             </span>
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-500 via-indigo-500 to-violet-500 mx-auto rounded-full mb-6" />
+          <div className="w-24 h-1 bg-gradient-to-r from-blue-500 via-[#FD673A] to-blue-500 mx-auto rounded-full mb-6" />
           <p className="text-lg text-blue-100/70 max-w-2xl mx-auto">
             Choose the best way to connect with our team
           </p>

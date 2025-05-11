@@ -15,7 +15,7 @@ const FAQItem = ({ question, answer }: { question: string; answer: string }) => 
         onClick={() => setIsOpen(!isOpen)}
       >
         <span className="text-lg font-medium text-white pr-8">{question}</span>
-        <span className="text-indigo-400 transition-transform duration-300">
+        <span className={`transition-transform duration-300 ${isOpen ? 'text-[#FD673A]' : 'text-indigo-400 hover:text-[#FD673A]'}`}>
           {isOpen ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
         </span>
       </button>
@@ -81,11 +81,23 @@ const WhyWorkWithUs = () => {
       className="py-24 relative overflow-hidden"
       id="why-work-with-us"
     >
-      {/* Background decoration */}
-      <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-[#090E27]/30 to-transparent"></div>
-      <div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-t from-[#090E27]/30 to-transparent"></div>
+      {/* Enhanced Background decoration */}
+      <div className="absolute inset-0 bg-[#090E27]/30"></div>
+      <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-[#090E27]/50 to-transparent"></div>
+      <div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-t from-[#090E27]/50 to-transparent"></div>
       
-      <div className="container mx-auto px-4 md:px-6">
+      {/* Subtle dot pattern */}
+      <div className="absolute inset-0 opacity-[0.03]" 
+        style={{ 
+          backgroundImage: 'radial-gradient(circle, rgba(253, 103, 58, 0.4) 1px, transparent 1px)', 
+          backgroundSize: '30px 30px' 
+        }}
+      />
+      
+      {/* Subtle gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#FD673A]/5 via-transparent to-blue-500/5"></div>
+      
+      <div className="container mx-auto px-4 md:px-6 relative z-10">
         <div className="max-w-4xl mx-auto mb-20">
           <div className="text-center">
             <motion.div 
@@ -94,7 +106,7 @@ const WhyWorkWithUs = () => {
               transition={{ duration: 0.6 }}
               className="mb-3"
             >
-              <span className="inline-block px-4 py-1.5 text-sm font-medium rounded-full bg-indigo-600/30 backdrop-blur-sm text-indigo-200 border border-indigo-500/20">
+              <span className="inline-block px-4 py-1.5 text-sm font-medium rounded-full bg-gradient-to-r from-[#FD673A]/20 to-blue-500/20 backdrop-blur-sm text-[#FD673A] border border-[#FD673A]/30 shadow-lg shadow-[#FD673A]/5">
                 Benefits & FAQs
               </span>
             </motion.div>
@@ -103,10 +115,31 @@ const WhyWorkWithUs = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-3xl md:text-4xl font-bold text-white mb-4"
+              className="text-3xl md:text-4xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-[#FD673A] to-indigo-400"
             >
               Why Work With Us?
             </motion.h2>
+            
+            <motion.div 
+              className="w-20 h-[2px] mx-auto mb-6 overflow-hidden relative"
+              initial={{ width: 0, opacity: 0 }}
+              animate={isInView ? { width: 80, opacity: 1 } : { width: 0, opacity: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              <motion.div
+                animate={{
+                  x: ['-100%', '100%'],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  repeatType: "loop",
+                  ease: "easeInOut"
+                }}
+                className="absolute inset-0 bg-gradient-to-r from-blue-500/0 via-[#FD673A] to-blue-400/0 rounded-full w-full h-full"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-500 via-[#FD673A] to-blue-400 rounded-full opacity-40" />
+            </motion.div>
             
             <motion.p 
               initial={{ opacity: 0, y: 20 }}
@@ -128,9 +161,10 @@ const WhyWorkWithUs = () => {
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.6, delay: 0.3 }}
               className="bg-gradient-to-br from-indigo-950/40 via-indigo-900/30 to-indigo-900/20 backdrop-blur-sm 
-                border border-indigo-500/20 rounded-2xl p-8 h-full"
+                border border-indigo-500/20 rounded-2xl p-8 h-full hover:shadow-lg hover:shadow-[#FD673A]/5
+                hover:border-[#FD673A]/10 transition-all duration-300"
             >
-              <h3 className="text-2xl font-bold text-white mb-8">
+              <h3 className="text-2xl font-bold mb-8 text-transparent bg-clip-text bg-gradient-to-r from-white to-white via-[#FD673A]/90">
                 Benefits & Perks
               </h3>
               
@@ -141,10 +175,11 @@ const WhyWorkWithUs = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                     transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
-                    className="flex"
+                    className="flex group"
                   >
-                    <div className="w-12 h-12 rounded-xl bg-indigo-600/20 border border-indigo-500/30 
-                      flex items-center justify-center text-indigo-400 mr-4 flex-shrink-0"
+                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#FD673A]/20 to-indigo-600/20 
+                      border border-indigo-500/30 flex items-center justify-center text-[#FD673A] mr-4 flex-shrink-0
+                      group-hover:border-[#FD673A]/50 transition-all duration-300"
                     >
                       {benefit.icon === 'heart' && (
                         <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -179,7 +214,7 @@ const WhyWorkWithUs = () => {
                     </div>
                     
                     <div>
-                      <h4 className="text-lg font-medium text-white mb-1">{benefit.title}</h4>
+                      <h4 className="text-lg font-medium text-white mb-1 group-hover:text-[#FD673A]/90 transition-colors">{benefit.title}</h4>
                       <p className="text-blue-100/70">{benefit.description}</p>
                     </div>
                   </motion.div>
@@ -195,9 +230,10 @@ const WhyWorkWithUs = () => {
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.6, delay: 0.4 }}
               className="bg-gradient-to-br from-indigo-950/40 via-indigo-900/30 to-indigo-900/20 backdrop-blur-sm 
-                border border-indigo-500/20 rounded-2xl p-8 h-full"
+                border border-indigo-500/20 rounded-2xl p-8 h-full hover:shadow-lg hover:shadow-[#FD673A]/5
+                hover:border-[#FD673A]/10 transition-all duration-300"
             >
-              <h3 className="text-2xl font-bold text-white mb-8">
+              <h3 className="text-2xl font-bold mb-8 text-transparent bg-clip-text bg-gradient-to-r from-white to-white via-[#FD673A]/90">
                 Frequently Asked Questions
               </h3>
               
@@ -225,25 +261,25 @@ const WhyWorkWithUs = () => {
           className="max-w-4xl mx-auto text-center"
         >
           <div className="relative">
-            <div className="absolute -top-8 -left-8 text-indigo-500 opacity-20 text-8xl">&quot;</div>
+            <div className="absolute -top-8 -left-8 text-[#FD673A] opacity-20 text-8xl">&quot;</div>
             <div className="relative z-10">
               <p className="text-xl md:text-2xl text-blue-100/90 italic mb-6">
                 Joining JeySol was one of the best decisions of my career. The supportive environment,
                 cutting-edge projects, and focus on work-life balance make this a truly special place to work.
               </p>
               <div className="flex items-center justify-center">
-                <div className="w-12 h-12 rounded-full bg-indigo-600/20 border border-indigo-500/30 
-                  flex items-center justify-center mr-3"
+                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#FD673A]/30 to-indigo-600/20 
+                  border border-[#FD673A]/30 flex items-center justify-center mr-3"
                 >
-                  <span className="text-lg font-bold text-indigo-400">SL</span>
+                  <span className="text-lg font-bold text-white">SL</span>
                 </div>
                 <div className="text-left">
-                  <div className="font-medium text-white">Sarah Lee</div>
-                  <div className="text-indigo-400 text-sm">Senior Developer</div>
+                  <div className="font-medium text-white">Tawfiq Hasan Kiron</div>
+                  <div className="text-[#FD673A] text-sm">Senior Developer</div>
                 </div>
               </div>
             </div>
-            <div className="absolute -bottom-8 -right-8 text-indigo-500 opacity-20 text-8xl transform rotate-180">&quot;</div>
+            <div className="absolute -bottom-8 -right-8 text-[#FD673A] opacity-20 text-8xl transform rotate-180">&quot;</div>
           </div>
         </motion.div>
       </div>
